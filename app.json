@@ -1,0 +1,10 @@
+{
+  "name": "slack-moji-rps",
+  "scripts": {
+  },
+  "env": {
+  },
+  "addons": [
+    "heroku-redis"
+  ]
+}
