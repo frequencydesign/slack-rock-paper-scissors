@@ -16,15 +16,15 @@ exports.post = function(req, res, next) {
     var requestBodyText = req.body["text"];
     var requestBodyUserName = req.body["user_name"];
 
-    var pattern = /\B@[a-z0-9_-]+/gi;
-    var mentions = requestBodyText.match(pattern);
+    //var pattern = /\B@[a-z0-9_-]+/gi;
+    var mentions = requestBodyText.match(/\B@[a-z0-9_-]+/gi);
     var invitedPlayer = mentions[0];
 
     if (invitedPlayer.length > 0) {
         res.json({
             "username": "outgoing-rps",
             //"icon_emoji": ":ghost:",
-            "text": "Ready to battle " + invitedPlayer + "? /throw a :punch: :memo: or :scissors: to battle. " +requestBodyUserName+ " said " + requestBodyText
+            "text": "Ready to battle " + invitedPlayer + "? /throw a :punch: :memo: or :scissors: to battle. " +requestBodyUserName+ " said " + requestBodyText + " oh and " + mentions
         });
     } else {
         res.json({
