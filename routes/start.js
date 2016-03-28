@@ -1,3 +1,5 @@
+//var bodyParser = require("body-parser")
+
 exports.post = function(req, res, next) {
     //console.log('Start route.');
     //res.send("Res.Send Start.");
@@ -10,12 +12,13 @@ exports.post = function(req, res, next) {
 
      */
 
-    var requestBody = req.body;
+    //var requestBody = req.body.urlencoded;
+    var requestBodyText = req.body["text"];
 
     res.json({
         "username": "outgoing-rps",
         //"icon_emoji": ":ghost:",
-        "text": "You started a game! You typed " + requestBody
+        "text": "You started a game! You typed " + requestBodyText
     });
 
     next();
