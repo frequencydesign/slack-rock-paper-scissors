@@ -9,10 +9,13 @@ exports.post = function(req, res, next) {
 
 
      */
+
+    var requestBody = req.body;
+
     res.json({
         "username": "outgoing-rps",
         //"icon_emoji": ":ghost:",
-        "text": "You started a game!"
+        "text": "You started a game! You typed " + requestBody
     });
 
     next();
