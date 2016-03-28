@@ -15,11 +15,23 @@ exports.post = function(req, res, next) {
     //var requestBody = req.body.urlencoded;
     var requestBodyText = req.body["text"];
 
-    res.json({
-        "username": "outgoing-rps",
-        //"icon_emoji": ":ghost:",
-        "text": "You started a game! You typed " + requestBodyText
-    });
+    var pattern = /\B@[a-z0-9_-]+/gi;
+    var mentions = requestBodyText.match(pattern);
+    var invitedPlayer = mentions[0];
+
+    if (invitedPlayer.length > 0) {
+        res.json({
+            "username": "outgoing-rps",
+            //"icon_emoji": ":ghost:",
+            "text": "Ready to battle " + invitedPlayer + "? /throw a :punch: :memo: or :scissors: to battle."
+        });
+    } else {
+        res.json({
+            "username": "outgoing-rps",
+            "text": "You idiot! You didn't choose anyone to battle with!"
+        });
+    }
+
 
     next();
 };
