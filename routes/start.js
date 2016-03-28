@@ -14,6 +14,7 @@ exports.post = function(req, res, next) {
 
     //var requestBody = req.body.urlencoded;
     var requestBodyText = req.body["text"];
+    var requestBodyUserName = req.body["user_name"];
 
     var pattern = /\B@[a-z0-9_-]+/gi;
     var mentions = requestBodyText.match(pattern);
@@ -23,7 +24,7 @@ exports.post = function(req, res, next) {
         res.json({
             "username": "outgoing-rps",
             //"icon_emoji": ":ghost:",
-            "text": "Ready to battle " + invitedPlayer + "? /throw a :punch: :memo: or :scissors: to battle."
+            "text": "Ready to battle " + invitedPlayer + "? /throw a :punch: :memo: or :scissors: to battle. " +requestBodyUserName+ " said " + requestBodyText
         });
     } else {
         res.json({
