@@ -24,7 +24,7 @@ exports.post = function(req, res, next) {
         res.json({
             "username": "outgoing-rps",
             //"icon_emoji": ":ghost:",
-            "text": "Ready to battle " + invitedPlayer + "? /throw a :punch: :memo: or :scissors: to battle. " +requestBodyUserName+ " said " + requestBodyText + " oh and " + mentions
+            "text": "Ready to battle <" + invitedPlayer + ">? /throw a :punch: :memo: or :scissors: to battle. @" +requestBodyUserName+ " said " + requestBodyText + " oh and " + mentions
         });
     } else {
         res.json({
