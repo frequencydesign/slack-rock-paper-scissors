@@ -66,7 +66,7 @@ exports.post = function(req, res, next) {
     *
     */
 
-    dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
+    //dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
 
     function printNewMatch() {
         dbActions.getMatch(newMatchID, confirmNewMatch);
