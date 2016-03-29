@@ -1,4 +1,17 @@
 //var bodyParser = require("body-parser")
+var match = ''
+    , dbActions = require('./../persist.js')
+    , tally = require('./../tally.js')
+    , activeMatch = ''
+    , redis = require('redis')
+    , matchnameText = ''
+    , triggerWord = ''
+    , channelId = ''
+    , matchnameText = ''
+    , slackRes = ''
+    , rtg = ''
+    , newMatchID = ''
+    , ts = Math.floor(Date.now() / 1000);
 
 exports.post = function(req, res, next) {
     //console.log('Start route.');
@@ -39,25 +52,47 @@ exports.post = function(req, res, next) {
         var troubleMakerThrowWrong = "You didn't start with a throw!";
     }
 
-    if (invitedPlayer.length > 0) {
-        if(troubleMakerThrowWrong) {
-            res.json({
-                "username": "outgoing-rps",
-                "text": troubleMakerThrowWrong
-            });
+    match = {
+        "matchName": matchnameText,
+        "active": 1,
+        "answers": []
+    }
+
+    newMatchID = "activeMatch_" + ts;
+
+
+    /*
+    * Start New Match.
+    * Print Starting Throw
+    *
+    */
+
+    dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
+
+    function printNewMatch() {
+        dbActions.getMatch(newMatchID, confirmNewMatch);
+    }
+
+    function confirmNewMatch(data) {
+        if (invitedPlayer.length > 0) {
+            if(troubleMakerThrowWrong) {
+                res.json({
+                    "username": "outgoing-rps",
+                    "text": troubleMakerThrowWrong + JSON.parse(data)
+                });
+            } else {
+                res.json({
+                    "username": "outgoing-rps",
+                    "text": "Ready to battle <" + invitedPlayer + ">?\nthrow a :the_horns: :memo: or :scissors: to battle. @" + requestBodyUserName + " threw-down " + troubleMakerThrow  + JSON.parse(data)
+                });
+            }
         } else {
             res.json({
                 "username": "outgoing-rps",
-                "text": "Ready to battle <" + invitedPlayer + ">?\n/throw a :the_horns: :memo: or :scissors: to battle. @" + requestBodyUserName + " threw-down " + troubleMakerThrow
+                "text": "You idiot! You didn't choose anyone to battle with!"  + JSON.parse(data)
             });
         }
-    } else {
-        res.json({
-            "username": "outgoing-rps",
-            "text": "You idiot! You didn't choose anyone to battle with!"
-        });
     }
-
 
     next();
 };
