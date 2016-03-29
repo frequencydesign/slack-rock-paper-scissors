@@ -1,7 +1,6 @@
 //var bodyParser = require("body-parser")
 var match = ''
     , dbActions = require('./../persist.js')
-    , tally = require('./../tally.js')
     , activeMatch = ''
     , redis = require('redis')
     , matchnameText = ''
