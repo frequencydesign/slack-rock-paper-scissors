@@ -4,11 +4,14 @@ exports.post = function(req, res, next) {
     //console.log('Start route.');
     //res.send("Res.Send Start.");
     /*
-    UPON POSTING
-    Send a request for an opponent
-    Consider a timer for accepting of a match
-    when a match is accepted, create a match in the DB so that there is something to hold the answers and compare winners
+     UPON POSTING
+     Send a request for an opponent
+     Consider a timer for accepting of a match
+     when a match is accepted, create a match in the DB so that there is something to hold the answers and compare winners
 
+     "username": "outgoing-rps",
+     //"icon_emoji": ":ghost:",
+     "text": "Ready to battle <" + invitedPlayer + ">? /throw a :punch: :memo: or :scissors: to battle. @" + requestBodyUserName + " said " + requestBodyText + " oh and " + mentions
 
      */
 
@@ -20,12 +23,34 @@ exports.post = function(req, res, next) {
     var mentions = requestBodyText.match(/\B@[a-z0-9_-]+/gi);
     var invitedPlayer = mentions[0];
 
+    var rock = requestBodyText.search(":the_horns:");
+    var paper = requestBodyText.search(":memo:");
+    var scissors = requestBodyText.search(":scissors:");
+
+    if ( ((rock > 2) && ((paper > 2) || (scissors > 2))) || ((paper > 2) && (scissors > 2)) ) {
+        var troubleMakerThrowWrong = "You threw too many signs yo!";
+    } else if (rock > 2) {
+        var troubleMakerThrow = ":the_horns:";
+    } else if (paper > 2) {
+        var troubleMakerThrow = ":memo:";
+    } else if (scissors > 2) {
+        var troubleMakerThrow = ":scissors:";
+    } else {
+        var troubleMakerThrowWrong = "You didn't start with a throw!";
+    }
+
     if (invitedPlayer.length > 0) {
-        res.json({
-            "username": "outgoing-rps",
-            //"icon_emoji": ":ghost:",
-            "text": "Ready to battle <" + invitedPlayer + ">? /throw a :punch: :memo: or :scissors: to battle. @" +requestBodyUserName+ " said " + requestBodyText + " oh and " + mentions
-        });
+        if(troubleMakerThrowWrong) {
+            res.json({
+                "username": "outgoing-rps",
+                "text": troubleMakerThrowWrong
+            });
+        } else {
+            res.json({
+                "username": "outgoing-rps",
+                "text": "Ready to battle <" + invitedPlayer + ">? /throw a :the_horns: :memo: or :scissors: to battle. @" + requestBodyUserName + " threw-down " + troubleMakerThrow
+            });
+        }
     } else {
         res.json({
             "username": "outgoing-rps",
