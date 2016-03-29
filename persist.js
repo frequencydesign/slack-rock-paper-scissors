@@ -10,7 +10,7 @@ var redis = require("redis")
 
 if (process.env.REDIS_URL) {
     rtg = require("url").parse(process.env.REDIS_URL);
-    client = redis.createClient(rtg.pot, rtg.hostname);
+    client = redis.createClient(rtg.post, rtg.hostname);
     client.auth(rtg.auth.split(':')[1]);
 } else {
     client = redis.createClient();
