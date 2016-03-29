@@ -48,7 +48,7 @@ exports.post = function(req, res, next) {
         } else {
             res.json({
                 "username": "outgoing-rps",
-                "text": "Ready to battle <" + invitedPlayer + ">? /throw a :the_horns: :memo: or :scissors: to battle. @" + requestBodyUserName + " threw-down " + troubleMakerThrow
+                "text": "Ready to battle <" + invitedPlayer + ">?\n/throw a :the_horns: :memo: or :scissors: to battle. @" + requestBodyUserName + " threw-down " + troubleMakerThrow
             });
         }
     } else {
