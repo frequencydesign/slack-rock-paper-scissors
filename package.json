@@ -12,7 +12,6 @@
     "body-parser": "^1.13.1",
     "express": "^4.13.4",
     "node-slackbot": "^0.0.6",
-    "underscore": "^1.8.3",
-    "redis": "^0.12.1"
+    "redis": "^2.6.0-0"
   }
 }
