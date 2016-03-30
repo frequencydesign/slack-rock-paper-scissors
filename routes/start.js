@@ -77,18 +77,18 @@ exports.post = function(req, res, next) {
             if(troubleMakerThrowWrong) {
                 res.json({
                     "username": "outgoing-rps",
-                    "text": troubleMakerThrowWrong + JSON.parse(data)
+                    "text": troubleMakerThrowWrong// + JSON.parse(data)
                 });
             } else {
                 res.json({
                     "username": "outgoing-rps",
-                    "text": "Ready to battle <" + invitedPlayer + ">?\nthrow a :the_horns: :memo: or :scissors: to battle. @" + requestBodyUserName + " threw-down " + troubleMakerThrow  + JSON.parse(data)
+                    "text": "Ready to battle <" + invitedPlayer + ">?\nthrow a :the_horns: :memo: or :scissors: to battle. @" + requestBodyUserName + " threw-down " + troubleMakerThrow//  + JSON.parse(data)
                 });
             }
         } else {
             res.json({
                 "username": "outgoing-rps",
-                "text": "You idiot! You didn't choose anyone to battle with!"  + JSON.parse(data)
+                "text": "You idiot! You didn't choose anyone to battle with!"//  + JSON.parse(data)
             });
         }
     //}
