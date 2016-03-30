@@ -72,7 +72,7 @@ exports.post = function(req, res, next) {
         dbActions.getMatch(newMatchID, confirmNewMatch);
     }
 
-    function confirmNewMatch(data) {
+    //function confirmNewMatch(data) {
         if (invitedPlayer.length > 0) {
             if(troubleMakerThrowWrong) {
                 res.json({
@@ -91,7 +91,7 @@ exports.post = function(req, res, next) {
                 "text": "You idiot! You didn't choose anyone to battle with!"  + JSON.parse(data)
             });
         }
-    }
+    //}
 
     next();
 };
