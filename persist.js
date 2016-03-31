@@ -9,6 +9,7 @@ var redis = require("redis")
     , ts = Math.floor(Date.now() / 1000);
 
 if (process.env.REDIS_URL) {
+    console.log(process.env.REDIS_URL);
     rtg = require("url").parse(process.env.REDIS_URL);
     console.log(rtg);
     client = redis.createClient(rtg.post, rtg.hostname);
