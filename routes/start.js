@@ -73,9 +73,9 @@ exports.post = function(req, res, next) {
     }
 
     function confirmNewMatch(data) {
-        console.log("confirmNewMatch");
-        console.log(data);
-        console.log(res);
+        //console.log("confirmNewMatch");
+        //console.log(data);
+        //console.log(res);
         if (invitedPlayer.length > 0) {
             if(troubleMakerThrowWrong) {
                 res.json({
