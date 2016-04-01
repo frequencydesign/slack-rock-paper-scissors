@@ -15,7 +15,7 @@ if (process.env.REDIS_URL) {
     client = redis.createClient(rtg.post, rtg.hostname);
     console.log(rtg.auth);
     console.log(rtg.auth.split(':')[1]);
-    client.auth(rtg.auth.split(':')[1]);
+    //client.auth(rtg.auth.split(':')[1]);
 } else {
     console.log("createClient");
     client = redis.createClient();
