@@ -35,3 +35,5 @@ var dbActions = {
         });
     }
 };
+
+module.exports = dbActions;
