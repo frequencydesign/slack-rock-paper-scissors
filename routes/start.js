@@ -66,29 +66,29 @@ exports.post = function(req, res, next) {
     *
     */
 
-    //dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
+    dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
 
     function printNewMatch() {
         dbActions.getMatch(newMatchID, confirmNewMatch);
     }
 
-    //function confirmNewMatch(data) {
+    function confirmNewMatch(data) {
         if (invitedPlayer.length > 0) {
             if(troubleMakerThrowWrong) {
                 res.json({
                     "username": "outgoing-rps",
-                    "text": troubleMakerThrowWrong// + JSON.parse(data)
+                    "text": troubleMakerThrowWrong + JSON.parse(data)
                 });
             } else {
                 res.json({
                     "username": "outgoing-rps",
-                    "text": "Ready to battle <" + invitedPlayer + ">?\nthrow a :the_horns: :memo: or :scissors: to battle. @" + requestBodyUserName + " threw-down " + troubleMakerThrow//  + JSON.parse(data)
+                    "text": "Ready to battle <" + invitedPlayer + ">?\nthrow a :the_horns: :memo: or :scissors: to battle. @" + requestBodyUserName + " threw-down " + troubleMakerThrow  + JSON.parse(data)
                 });
             }
         } else {
             res.json({
                 "username": "outgoing-rps",
-                "text": "You idiot! You didn't choose anyone to battle with!"//  + JSON.parse(data)
+                "text": "You idiot! You didn't choose anyone to battle with!"  + JSON.parse(data)
             });
         }
     //}
