@@ -91,7 +91,7 @@ exports.post = function(req, res, next) {
                 "text": "You idiot! You didn't choose anyone to battle with!"  + JSON.parse(data)
             });
         }
-    //}
+    }
 
     next();
 };
