@@ -77,8 +77,9 @@ exports.post = function(req, res, next) {
     function confirmNewMatch(data) {
         //console.log("confirmNewMatch");
         console.log(data);
+        console.log(data.invitedPlayer);
         //console.log(res);
-        if (invitedPlayer.length > 0) {
+        if (data.invitedPlayer.length > 2) {
             if(troubleMakerThrowWrong) {
                 res.json({
                     "username": "outgoing-rps",
