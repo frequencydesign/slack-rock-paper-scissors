@@ -55,6 +55,7 @@ exports.post = function(req, res, next) {
     match = {
         "matchName": newMatchID,
         "firstPlayerThrow": troubleMakerThrow,
+        "invitedPlayer": invitedPlayer,
         "active": 1,
         "answers": []
     }
