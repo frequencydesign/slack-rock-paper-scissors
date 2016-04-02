@@ -51,13 +51,14 @@ exports.post = function(req, res, next) {
         var troubleMakerThrowWrong = "You didn't start with a throw!";
     }
 
+    newMatchID = "activeMatch_" + ts;
     match = {
-        "matchName": matchnameText,
+        "matchName": newMatchID,
+        "firstPlayerThrow": troubleMakerThrow,
         "active": 1,
         "answers": []
     }
 
-    newMatchID = "activeMatch_" + ts;
 
 
     /*
