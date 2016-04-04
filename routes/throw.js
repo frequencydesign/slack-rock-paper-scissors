@@ -73,12 +73,12 @@ dbActions.getMatch(newMatchID, secondPlayerThrow);
         } else {
 
             if (firstPlayerThrow == ":the_horns:") {
-                if (troubleMakerThrow = ":memo:") {
+                if (troubleMakerThrow == ":memo:") {
                     res.json({
                         "username": "outgoing-rps-finish",
                         "text": "<" + requestBodyUserId + "> wrapped up the first player's throw"
                     })
-                } else if (troubleMakerThrow = ":scissors:") {
+                } else if (troubleMakerThrow == ":scissors:") {
                     res.json({
                         "username": "outgoing-rps-finish",
                         "text": "The first player smashed <" + requestBodyUserId + ">'s throw"
@@ -90,12 +90,12 @@ dbActions.getMatch(newMatchID, secondPlayerThrow);
                     })
                 }
             } else if (firstPlayerThrow == ":memo:") {
-                if (troubleMakerThrow = ":the_horns:") {
+                if (troubleMakerThrow == ":the_horns:") {
                     res.json({
                         "username": "outgoing-rps-finish",
                         "text": "The first player wrapped up <" + requestBodyUserId + ">'s throw"
                     })
-                } else if (troubleMakerThrow = ":scissors:") {
+                } else if (troubleMakerThrow == ":scissors:") {
                     res.json({
                         "username": "outgoing-rps-finish",
                         "text": "<" + requestBodyUserId + "> sliced up the first player's throw"
@@ -107,12 +107,12 @@ dbActions.getMatch(newMatchID, secondPlayerThrow);
                     })
                 }
             } else if (firstPlayerThrow == ":scissors:") {
-                if (paper) {
+                if (troubleMakerThrow == ":memo:") {
                     res.json({
                         "username": "outgoing-rps-finish",
                         "text": "The first player sliced up <" + requestBodyUserId + ">'s throw"
                     })
-                } else if (rock) {
+                } else if (troubleMakerThrow == ":the_horns:") {
                     res.json({
                         "username": "outgoing-rps-finish",
                         "text": "<" + requestBodyUserId + "> smashed the first player's throw"
