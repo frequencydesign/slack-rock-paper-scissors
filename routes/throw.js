@@ -1,7 +1,8 @@
 
 var match = ''
     , dbActions = require('./../persist.js')
-    , slackRes = '';
+    , slackRes = ''
+    , newMatchID = '';
 
 /*
 * import redis
@@ -13,10 +14,30 @@ var match = ''
 * */
 
 exports.post = function(req, res, next) {
+    var requestBodyText = req.body["text"];
+    var requestBodyUserName = req.body["user_name"];
+    var requestChannelId = req.body["channel_id"];
 
-dbActions.getMatch();
+    var rock = requestBodyText.search(":the_horns:");
+    var paper = requestBodyText.search(":memo:");
+    var scissors = requestBodyText.search(":scissors:");
+
+    newMatchID = "activeMatch_" + requestChannelId;
+    /*
+    match = {
+        "matchName": newMatchID,
+        "firstPlayerThrow": troubleMakerThrow,
+        "invitedPlayer": invitedPlayer,
+        "active": 1,
+        "answers": []
+    }
+    */
+
+
+dbActions.getMatch(newMatchID, messAroundWithCurrentMatch);
+
     function messAroundWithCurrentMatch(data) {
-
+        console.log(data)
     }
 
     res.json({
