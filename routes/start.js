@@ -59,8 +59,14 @@ exports.post = function(req, res, next) {
                 "firstPlayerThrow": troubleMakerThrow,
                 "invitedPlayer": invitedPlayer,
                 "active": 1
-            }
+            };
         } else {
+            match = {
+                "matchName": newMatchID,
+                "firstPlayerThrow": troubleMakerThrow,
+                "invitedPlayer": invitedPlayer,
+                "active": 1
+            };
             //dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
             dbActions.getMatch(newMatchID, closeMatch);
         }
