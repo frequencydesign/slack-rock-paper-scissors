@@ -135,7 +135,7 @@ dbActions.getMatch(newMatchID, secondPlayerThrow);
                 console.log(theMatchData);
                 console.log(theMatchData.invitedPlayer);
                 console.log(theMatchData.active);
-                theMatchData.active = 0;
+                data.active = 0;
                 dbActions.disableMatch(newMatchID, theMatchData, confirmCloseMatch)
             }
 
