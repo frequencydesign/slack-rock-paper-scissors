@@ -24,6 +24,18 @@ exports.post = function(req, res, next) {
     var paper = requestBodyText.search(":memo:");
     var scissors = requestBodyText.search(":scissors:");
 
+    if ( ((rock > 2) && ((paper > 2) || (scissors > 2))) || ((paper > 2) && (scissors > 2)) ) {
+        var troubleMakerThrowWrong = "You threw too many signs yo!";
+    } else if (rock > 2) {
+        var troubleMakerThrow = ":the_horns:";
+    } else if (paper > 2) {
+        var troubleMakerThrow = ":memo:";
+    } else if (scissors > 2) {
+        var troubleMakerThrow = ":scissors:";
+    } else {
+        var troubleMakerThrowWrong = "You didn't start with a throw!";
+    }
+
     newMatchID = "activeMatch_" + requestChannelId;
     /*
     match = {
@@ -42,9 +54,11 @@ dbActions.getMatch(newMatchID, secondPlayerThrow);
         console.log(data);
         var theMatchData = JSON.parse(data);
         requestBodyUserId = "@"+requestBodyUserId;
+        var firstPlayerThrow = theMatchData.firstPlayerThrow;
         console.log(theMatchData.invitedPlayer);
         console.log(requestBodyUserId);
         console.log(requestBodyUserName);
+
         if (theMatchData == null) {
             res.json({
                 "username": "outgoing-rps-finish",
@@ -57,10 +71,67 @@ dbActions.getMatch(newMatchID, secondPlayerThrow);
                 "text": "You weren't invited to play.\n<" + theMatchData.invitedPlayer + "> needs to make a throw first."
             });
         } else {
-            res.json({
-                "username": "outgoing-rps-finish",
-                "text": "Somebody won! Or maybe it was a tie? You decide because I'm not smart enough yet!"
-            });
+
+            if (firstPlayerThrow == ":the_horns:") {
+                if (paper) {
+                    res.json({
+                        "username": "outgoing-rps-finish",
+                        "text": "<" + requestBodyUserId + "> wrapped up the first player's throw"
+                    })
+                } else if (scissors) {
+                    res.json({
+                        "username": "outgoing-rps-finish",
+                        "text": "The first player smashed <" + requestBodyUserId + ">'s throw"
+                    })
+                } else {
+                    res.json({
+                        "username": "outgoing-rps-finish",
+                        "text": "You two squared up in a tie."
+                    })
+                }
+            } else if (firstPlayerThrow == ":memo:") {
+                if (rock) {
+                    res.json({
+                        "username": "outgoing-rps-finish",
+                        "text": "The first player wrapped up <" + requestBodyUserId + ">'s throw"
+                    })
+                } else if (scissors) {
+                    res.json({
+                        "username": "outgoing-rps-finish",
+                        "text": "<" + requestBodyUserId + "> sliced up the first player's throw"
+                    })
+                } else {
+                    res.json({
+                        "username": "outgoing-rps-finish",
+                        "text": "You two squared up in a tie."
+                    })
+                }
+            } else if (firstPlayerThrow == ":scissors:") {
+                if (paper) {
+                    res.json({
+                        "username": "outgoing-rps-finish",
+                        "text": "The first player sliced up <" + requestBodyUserId + ">'s throw"
+                    })
+                } else if (rock) {
+                    res.json({
+                        "username": "outgoing-rps-finish",
+                        "text": "<" + requestBodyUserId + "> smashed the first player's throw"
+                    })
+                } else {
+                    res.json({
+                        "username": "outgoing-rps-finish",
+                        "text": "You two squared up in a tie."
+                    })
+                }
+            }
+            /*
+            dbActions.finishMatch(newMatchID, closeMatch);
+
+            function closeMatch(data) {
+                var closingMatchData = JSON.parse(data);
+
+            }
+            */
         }
     }
 

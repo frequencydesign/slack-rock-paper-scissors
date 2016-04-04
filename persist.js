@@ -27,10 +27,10 @@ var dbActions = {
                 callbackFunction(null);
             }
         });
-    }/*,
-    finishMatch: function(secondPlayer, secondThrow, callbackFunction) {
+    },
+    finishMatch: function(matchId, callbackFunction) {
 
-        client.get(secondPlayerOpenGames, function(err, reply) {
+        client.get(matchId, function(err, reply) {
 
             if (reply) {
                 callbackFunction(reply);
@@ -38,7 +38,7 @@ var dbActions = {
                 callbackFunction(null);
             }
         })
-    }*/
+    }
 };
 
 module.exports = dbActions;
