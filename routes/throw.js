@@ -39,8 +39,9 @@ exports.post = function(req, res, next) {
 dbActions.getMatch(newMatchID, secondPlayerThrow);
 
     function secondPlayerThrow(data) {
-        console.log(data)
-        var theMatchData = JSON.parse(data)
+        console.log(data);
+        var theMatchData = JSON.parse(data);
+        requestBodyUserId = "@"+requestBodyUserId;
         console.log(theMatchData.invitedPlayer);
         console.log(requestBodyUserId);
         console.log(requestBodyUserName);
