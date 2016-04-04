@@ -147,6 +147,9 @@ dbActions.getMatch(newMatchID, secondPlayerThrow);
             }
 */
             theMatchData.active = 0;
+            console.log(theMatchData);
+            console.log(theMatchData.invitedPlayer);
+            console.log(theMatchData.active);
             dbActions.disableMatch(newMatchID, theMatchData, confirmCloseMatch);
             function confirmCloseMatch(data) {
                 console.log(data);
