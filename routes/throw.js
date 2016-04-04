@@ -125,8 +125,8 @@ dbActions.getMatch(newMatchID, secondPlayerThrow);
                 }
             }
 
-            dbActions.getMatch(newMatchID, closeMatch);
-
+            //dbActions.getMatch(newMatchID, closeMatch);
+/*
             function closeMatch(data) {
                 var theMatchData = JSON.stringify(data);
                 console.log(data);
@@ -145,6 +145,11 @@ dbActions.getMatch(newMatchID, secondPlayerThrow);
                 console.log(data.active);
                 slackRes = "Closing last match. \n";
             }
+*/
+            theMatchData.active = 0;
+            dbActions.disableMatch(newMatchID, theMatchData, confirmCloseMatch);
+            slackRes = "Closing last match. \n";
+
         }
     }
 
