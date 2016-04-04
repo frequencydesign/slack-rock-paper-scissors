@@ -28,7 +28,7 @@ var dbActions = {
             }
         });
     },
-    disableMatch: function(matchId, finalMatchData, callbackFunction) {
+    disableMatch: function(matchId, matchData, callbackFunction) {
 
         client.get(matchId, function(err, reply) {
 

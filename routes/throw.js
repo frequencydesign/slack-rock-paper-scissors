@@ -56,8 +56,6 @@ dbActions.getMatch(newMatchID, secondPlayerThrow);
         var firstPlayerThrow = theMatchData.firstPlayerThrow;
         console.log(theMatchData.invitedPlayer);
         console.log(theMatchData.active);
-        console.log(requestBodyUserId);
-        console.log(requestBodyUserName);
 
         if (theMatchData.active != 1) {
             res.json({
@@ -150,7 +148,7 @@ dbActions.getMatch(newMatchID, secondPlayerThrow);
             console.log(theMatchData);
             console.log(theMatchData.invitedPlayer);
             console.log(theMatchData.active);
-            dbActions.disableMatch(newMatchID, theMatchData, confirmCloseMatch);
+            dbActions.disableMatch(newMatchID, JSON.stringify(theMatchData), confirmCloseMatch);
             function confirmCloseMatch(data) {
                 console.log(data);
                 console.log(data.invitedPlayer);
