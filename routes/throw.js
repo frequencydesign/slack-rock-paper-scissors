@@ -135,6 +135,7 @@ dbActions.getMatch(newMatchID, secondPlayerThrow);
 
             function confirmCloseMatch(data) {
                 var theMatchData = JSON.stringify(data);
+                console.log(theMatchData.invitedPlayer);
                 console.log(theMatchData.active);
                 slackRes = "Closing last match. \n";
             }
