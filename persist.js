@@ -1,12 +1,6 @@
 var redis = require("redis")
-    , matchnameText = ''
-    , triggerWord = ''
-    , matchnameText = ''
-    , slackRes = ''
     , client = ''
-    , rtg = ''
-    , operationComplete = false
-    , ts = Math.floor(Date.now() / 1000);
+    , rtg = '';
 
 if (process.env.REDIS_URL) {
     rtg = require("url").parse(process.env.REDIS_URL);

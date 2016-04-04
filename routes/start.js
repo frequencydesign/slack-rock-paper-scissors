@@ -1,16 +1,8 @@
 //var bodyParser = require("body-parser")
 var match = ''
     , dbActions = require('./../persist.js')
-    , activeMatch = ''
-    , redis = require('redis')
-    , matchnameText = ''
-    , triggerWord = ''
-    , channelId = ''
-    , matchnameText = ''
     , slackRes = ''
-    , rtg = ''
-    , newMatchID = ''
-    , ts = Math.floor(Date.now() / 1000);
+    , newMatchID = '';
 
 exports.post = function(req, res, next) {
     //console.log('Start route.');
@@ -30,7 +22,7 @@ exports.post = function(req, res, next) {
     //var requestBody = req.body.urlencoded;
     var requestBodyText = req.body["text"];
     var requestBodyUserName = req.body["user_name"];
-
+    var requestChannelId = req.body["channel_id"];
     //var pattern = /\B@[a-z0-9_-]+/gi;
     var mentions = requestBodyText.match(/\B@[a-z0-9_-]+/gi);
     var invitedPlayer = mentions[0];
@@ -51,7 +43,7 @@ exports.post = function(req, res, next) {
         var troubleMakerThrowWrong = "You didn't start with a throw!";
     }
 
-    newMatchID = "activeMatch_" + ts;
+    newMatchID = "activeMatch_" + requestChannelId;
     match = {
         "matchName": newMatchID,
         "firstPlayerThrow": troubleMakerThrow,

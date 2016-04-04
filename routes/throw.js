@@ -1,4 +1,7 @@
 
+var match = ''
+    , dbActions = require('./../persist.js')
+    , slackRes = '';
 
 /*
 * import redis
@@ -9,11 +12,12 @@
 * I need to print a winner
 * */
 
-
-
 exports.post = function(req, res, next) {
 
+dbActions.getMatch();
+    function messAroundWithCurrentMatch(data) {
 
+    }
 
     res.json({
         "username": "outgoing-rps-finish",
