@@ -55,10 +55,8 @@ exports.post = function(req, res, next) {
     dbActions.getMatch(newMatchID, listActiveMatch);
     function listActiveMatch(data) {
         console.log("Current match: " + data);
-        var theMatchData = JSON.stringify(data);
-        console.log("theMatchData.active " + theMatchData.active);
-        console.log("theMatchData: " + theMatchData);
-        if (theMatchData.active != 1) {
+        console.log("data.active " + data.active);
+        if (data.active != 1) {
             console.log("No active match. Setting up new match.")
         } else {
             //dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
