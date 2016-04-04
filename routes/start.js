@@ -67,10 +67,7 @@ exports.post = function(req, res, next) {
         if (data == null) {
             console.log("No active match. Setting up new match.")
         } else {
-            res.json({
-                "username": "outgoing-rps",
-                "text": "Closing last match."
-            });
+            slackRes = "Closing last match. \n";
         }
     }
     /*
@@ -95,18 +92,18 @@ exports.post = function(req, res, next) {
             if(troubleMakerThrowWrong) {
                 res.json({
                     "username": "outgoing-rps",
-                    "text": troubleMakerThrowWrong
+                    "text": slackRes + troubleMakerThrowWrong
                 });
             } else {
                 res.json({
                     "username": "outgoing-rps",
-                    "text": "Ready to battle <" + theMatchData.invitedPlayer + ">?\nthrow a :the_horns: :memo: or :scissors: to battle. @" + requestBodyUserName + " threw-down " + theMatchData.firstPlayerThrow
+                    "text": slackRes + "Ready to battle <" + theMatchData.invitedPlayer + ">?\nthrow a :the_horns: :memo: or :scissors: to battle. @" + requestBodyUserName + " threw-down " + theMatchData.firstPlayerThrow
                 });
             }
         } else {
             res.json({
                 "username": "outgoing-rps",
-                "text": "You idiot! You didn't choose anyone to battle with!"
+                "text": slackRes + "You idiot! You didn't choose anyone to battle with!"
             });
         }
     }
