@@ -66,18 +66,18 @@ exports.post = function(req, res, next) {
     }
 
     function closeMatch(data) {
-        var theMatchData = JSON.stringify(data);
-        console.log("theMatchData: " + theMatchData);
-        console.log("theMatchData.active " + theMatchData["active"]);
-        theMatchData.active = 0;
-        console.log("theMatchData.active " + theMatchData["active"]);
-        dbActions.disableMatch(newMatchID, JSON.stringify(theMatchData), confirmCloseMatch)
+        //var theMatchData = JSON.stringify(data);
+        console.log("data: " + data);
+        console.log("data.active " + data["active"]);
+        data.active = 0;
+        console.log("data.active " + data["active"]);
+        dbActions.disableMatch(newMatchID, JSON.stringify(data), confirmCloseMatch)
     }
 
     function confirmCloseMatch(data) {
-        var theMatchData = JSON.stringify(data);
-        console.log("theMatchData: " + theMatchData);
-        console.log(theMatchData.active);
+        //var theMatchData = JSON.stringify(data);
+        console.log("data: " + data);
+        console.log(data.active);
         slackRes = "Closing last match. \n";
     }
 
