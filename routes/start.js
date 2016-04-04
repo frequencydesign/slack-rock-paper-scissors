@@ -67,6 +67,7 @@ exports.post = function(req, res, next) {
 
     function closeMatch(data) {
         var theMatchData = JSON.stringify(data);
+        console.log("theMatchData: " + theMatchData);
         console.log("theMatchData.active " + theMatchData["active"]);
         theMatchData.active = 0;
         console.log("theMatchData.active " + theMatchData["active"]);
@@ -75,6 +76,7 @@ exports.post = function(req, res, next) {
 
     function confirmCloseMatch(data) {
         var theMatchData = JSON.stringify(data);
+        console.log("theMatchData: " + theMatchData);
         console.log(theMatchData.active);
         slackRes = "Closing last match. \n";
     }
