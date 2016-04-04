@@ -130,7 +130,7 @@ dbActions.getMatch(newMatchID, secondPlayerThrow);
             function closeMatch(data) {
                 var theMatchData = JSON.stringify(data);
                 theMatchData.active = 0;
-                dbActions.disableMatch(newMatchID, JSON.stringify(theMatchData), confirmCloseMatch)
+                dbActions.disableMatch(newMatchID, theMatchData, confirmCloseMatch)
             }
 
             function confirmCloseMatch(data) {
