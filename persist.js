@@ -33,7 +33,18 @@ var dbActions = {
                 callbackFunction(null);
             }
         });
-    }
+    }/*,
+    finishMatch: function(secondPlayer, secondThrow, callbackFunction) {
+
+        client.get(secondPlayerOpenGames, function(err, reply) {
+
+            if (reply) {
+                callbackFunction(reply);
+            } else {
+                callbackFunction(null);
+            }
+        })
+    }*/
 };
 
 module.exports = dbActions;

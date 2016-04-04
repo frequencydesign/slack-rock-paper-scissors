@@ -61,7 +61,18 @@ exports.post = function(req, res, next) {
     }
 
 
-
+    dbActions.getMatch(newMatchID, listActiveMatch)
+    function listActiveMatch(data) {
+        console.log("Current match: " + data)
+        if (data == null) {
+            console.log("No active match. Setting up new match.")
+        } else {
+            res.json({
+                "username": "outgoing-rps",
+                "text": "Closing last match."
+            });
+        }
+    }
     /*
     * Start New Match.
     * Print Starting Throw
