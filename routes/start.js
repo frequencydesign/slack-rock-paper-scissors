@@ -44,12 +44,7 @@ exports.post = function(req, res, next) {
     }
 
     newMatchID = "activeMatch_" + requestChannelId;
-    match = {
-        "matchName": newMatchID,
-        "firstPlayerThrow": troubleMakerThrow,
-        "invitedPlayer": invitedPlayer,
-        "active": 1
-    }
+
 
 
     dbActions.getMatch(newMatchID, listActiveMatch);
@@ -59,6 +54,12 @@ exports.post = function(req, res, next) {
 //        if (data.active != 1) {
         if (data == null) {
             console.log("No active match. Setting up new match.")
+            match = {
+                "matchName": newMatchID,
+                "firstPlayerThrow": troubleMakerThrow,
+                "invitedPlayer": invitedPlayer,
+                "active": 1
+            }
         } else {
             //dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
             dbActions.getMatch(newMatchID, closeMatch);
