@@ -58,10 +58,10 @@ dbActions.getMatch(newMatchID, secondPlayerThrow);
         console.log(requestBodyUserId);
         console.log(requestBodyUserName);
 
-        if (theMatchData == null) {
+        if (theMatchData.active != 1) {
             res.json({
                 "username": "outgoing-rps-finish",
-                "text": "Nobodies playing!\nStart a match by calenging someone to a Battle with :video_game::punch:" +
+                "text": "Nobodies playing!\nStart a match by challenging someone to a Battle with :video_game::punch:" +
                 "\nthen mention them with @ and make your throw with :the_horns: :memo: or :scissors:"
             });
         } else if (theMatchData.invitedPlayer != requestBodyUserId) {
@@ -123,7 +123,7 @@ dbActions.getMatch(newMatchID, secondPlayerThrow);
                     })
                 }
             }
-            
+
             dbActions.getMatch(newMatchID, closeMatch);
 
             function closeMatch(data) {
