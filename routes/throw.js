@@ -42,8 +42,7 @@ exports.post = function(req, res, next) {
         "matchName": newMatchID,
         "firstPlayerThrow": troubleMakerThrow,
         "invitedPlayer": invitedPlayer,
-        "active": 1,
-        "answers": []
+        "active": 1
     }
     */
 
@@ -124,14 +123,18 @@ dbActions.getMatch(newMatchID, secondPlayerThrow);
                     })
                 }
             }
-            /*
-            dbActions.finishMatch(newMatchID, closeMatch);
+            
+            dbActions.getMatch(newMatchID, closeMatch);
 
             function closeMatch(data) {
-                var closingMatchData = JSON.parse(data);
-
+                var data = JSON.stringify(data);
+                data.active = 0;
+                dbActions.disableMatch(newMatchID, JSON.stringify(data), confirmCloseMatch)
             }
-            */
+
+            function confirmCloseMatch(data) {
+                slackRes = "Closing last match. \n";
+            }
         }
     }
 

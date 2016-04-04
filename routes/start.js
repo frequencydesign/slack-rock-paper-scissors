@@ -48,8 +48,7 @@ exports.post = function(req, res, next) {
         "matchName": newMatchID,
         "firstPlayerThrow": troubleMakerThrow,
         "invitedPlayer": invitedPlayer,
-        "active": 1,
-        "answers": []
+        "active": 1
     }
 
 
@@ -59,9 +58,22 @@ exports.post = function(req, res, next) {
         if (data == null) {
             console.log("No active match. Setting up new match.")
         } else {
-            slackRes = "Closing last match. \n";
+            //dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
+            dbActions.getMatch(newMatchID, closeMatch);
         }
     }
+
+    function closeMatch(data) {
+        var data = JSON.stringify(data);
+        data.active = 0;
+        dbActions.disableMatch(newMatchID, JSON.stringify(data), confirmCloseMatch)
+    }
+
+    function confirmCloseMatch(data) {
+        slackRes = "Closing last match. \n";
+    }
+
+
     /*
     * Start New Match.
     * Print Starting Throw
