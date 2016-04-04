@@ -64,12 +64,14 @@ exports.post = function(req, res, next) {
     }
 
     function closeMatch(data) {
-        var data = JSON.stringify(data);
-        data.active = 0;
-        dbActions.disableMatch(newMatchID, JSON.stringify(data), confirmCloseMatch)
+        var theMatchData = JSON.stringify(data);
+        theMatchData.active = 0;
+        dbActions.disableMatch(newMatchID, JSON.stringify(theMatchData), confirmCloseMatch)
     }
 
     function confirmCloseMatch(data) {
+        var theMatchData = JSON.stringify(data);
+        console.log(theMatchData.active)
         slackRes = "Closing last match. \n";
     }
 

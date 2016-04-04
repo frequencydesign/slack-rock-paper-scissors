@@ -55,6 +55,7 @@ dbActions.getMatch(newMatchID, secondPlayerThrow);
         requestBodyUserId = "@"+requestBodyUserId;
         var firstPlayerThrow = theMatchData.firstPlayerThrow;
         console.log(theMatchData.invitedPlayer);
+        console.log(theMatchData.active);
         console.log(requestBodyUserId);
         console.log(requestBodyUserName);
 
@@ -127,12 +128,14 @@ dbActions.getMatch(newMatchID, secondPlayerThrow);
             dbActions.getMatch(newMatchID, closeMatch);
 
             function closeMatch(data) {
-                var data = JSON.stringify(data);
+                var theMatchData = JSON.stringify(data);
                 data.active = 0;
-                dbActions.disableMatch(newMatchID, JSON.stringify(data), confirmCloseMatch)
+                dbActions.disableMatch(newMatchID, JSON.stringify(theMatchData), confirmCloseMatch)
             }
 
             function confirmCloseMatch(data) {
+                var theMatchData = JSON.stringify(data);
+                console.log(theMatchData.active);
                 slackRes = "Closing last match. \n";
             }
         }
