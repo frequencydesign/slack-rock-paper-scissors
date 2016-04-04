@@ -129,16 +129,20 @@ dbActions.getMatch(newMatchID, secondPlayerThrow);
 
             function closeMatch(data) {
                 var theMatchData = JSON.stringify(data);
+                console.log(data);
+                console.log(data.invitedPlayer);
+                console.log(data.active);
+                console.log(theMatchData);
+                console.log(theMatchData.invitedPlayer);
+                console.log(theMatchData.active);
                 theMatchData.active = 0;
                 dbActions.disableMatch(newMatchID, theMatchData, confirmCloseMatch)
             }
 
             function confirmCloseMatch(data) {
-                var theMatchData = JSON.stringify(data);
                 console.log(data);
-                console.log(theMatchData);
-                console.log(theMatchData.invitedPlayer);
-                console.log(theMatchData.active);
+                console.log(data.invitedPlayer);
+                console.log(data.active);
                 slackRes = "Closing last match. \n";
             }
         }
