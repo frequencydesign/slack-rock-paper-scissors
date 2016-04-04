@@ -129,7 +129,7 @@ dbActions.getMatch(newMatchID, secondPlayerThrow);
 
             function closeMatch(data) {
                 var theMatchData = JSON.stringify(data);
-                data.active = 0;
+                theMatchData.active = 0;
                 dbActions.disableMatch(newMatchID, JSON.stringify(theMatchData), confirmCloseMatch)
             }
 
