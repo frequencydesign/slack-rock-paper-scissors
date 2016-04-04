@@ -34,16 +34,29 @@ exports.post = function(req, res, next) {
     */
 
 
-dbActions.getMatch(newMatchID, messAroundWithCurrentMatch);
+dbActions.getMatch(newMatchID, secondPlayerThrow);
 
-    function messAroundWithCurrentMatch(data) {
+    function secondPlayerThrow(data) {
         console.log(data)
+        if (data == null) {
+            res.json({
+                "username": "outgoing-rps-finish",
+                "text": "Nobodies playing!\nStart a match by calenging someone to a Battle with :video_game::punch:" +
+                "\nthen mention them with @ and make your throw with :the_horns: :memo: or :scissors:"
+            });
+        } else if (data.invitedPlayer != requestBodyUserName) {
+            res.json({
+                "username": "outgoing-rps-finish",
+                "text": "You weren't invited to play.\n<" + data.invitedPlayer + "> needs to make a throw first."
+            });
+        } else {
+            res.json({
+                "username": "outgoing-rps-finish",
+                "text": "Somebody won! Or maybe it was a tie? You decide because I'm not smart enough yet!"
+            });
+        }
     }
 
-    res.json({
-        "username": "outgoing-rps-finish",
-        "text": "Somebody won! Or maybe it was a tie? You decide because I'm not smart enough yet!"
-    });
 
     // next();
 };
