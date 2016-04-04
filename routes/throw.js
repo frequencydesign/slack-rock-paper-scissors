@@ -39,6 +39,8 @@ dbActions.getMatch(newMatchID, secondPlayerThrow);
     function secondPlayerThrow(data) {
         console.log(data)
         var theMatchData = JSON.parse(data)
+        console.log(theMatchData.invitedPlayer);
+        console.log(requestBodyUserName);
         if (theMatchData == null) {
             res.json({
                 "username": "outgoing-rps-finish",
