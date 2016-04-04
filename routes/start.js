@@ -1,29 +1,13 @@
-//var bodyParser = require("body-parser")
 var match = ''
     , dbActions = require('./../persist.js')
     , slackRes = ''
     , newMatchID = '';
 
 exports.post = function(req, res, next) {
-    //console.log('Start route.');
-    //res.send("Res.Send Start.");
-    /*
-     UPON POSTING
-     Send a request for an opponent
-     Consider a timer for accepting of a match
-     when a match is accepted, create a match in the DB so that there is something to hold the answers and compare winners
 
-     "username": "outgoing-rps",
-     //"icon_emoji": ":ghost:",
-     "text": "Ready to battle <" + invitedPlayer + ">? /throw a :punch: :memo: or :scissors: to battle. @" + requestBodyUserName + " said " + requestBodyText + " oh and " + mentions
-
-     */
-
-    //var requestBody = req.body.urlencoded;
     var requestBodyText = req.body["text"];
     var requestBodyUserName = req.body["user_name"];
     var requestChannelId = req.body["channel_id"];
-    //var pattern = /\B@[a-z0-9_-]+/gi;
     var mentions = requestBodyText.match(/\B@[a-z0-9_-]+/gi);
     var invitedPlayer = mentions[0];
 
@@ -51,12 +35,10 @@ exports.post = function(req, res, next) {
         "active": 1
     };
 
-
     dbActions.getMatch(newMatchID, listActiveMatch);
     function listActiveMatch(data) {
         var theMatchData = JSON.parse(data);
         console.log(theMatchData.active);
-
 
 //        console.log("Current match: " + data);
 //        console.log("data.active " + data["active"]);
@@ -97,11 +79,7 @@ exports.post = function(req, res, next) {
     }
 
     function confirmNewMatch(data) {
-        //console.log("confirmNewMatch");
-        console.log(data);
         var theMatchData = JSON.parse(data);
-        console.log(theMatchData.invitedPlayer);
-        //console.log(res);
         if (theMatchData.invitedPlayer.length > 2) {
             if(troubleMakerThrowWrong) {
                 res.json({

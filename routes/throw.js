@@ -1,17 +1,7 @@
-
 var match = ''
     , dbActions = require('./../persist.js')
     , slackRes = ''
     , newMatchID = '';
-
-/*
-* import redis
-* GET match object
-* I need to figure out which match I am throwing against
-* I need to add my throw into the DB
-* I need to compare the throws
-* I need to print a winner
-* */
 
 exports.post = function(req, res, next) {
     console.log(req.body);
@@ -37,15 +27,6 @@ exports.post = function(req, res, next) {
     }
 
     newMatchID = "activeMatch_" + requestChannelId;
-    /*
-    match = {
-        "matchName": newMatchID,
-        "firstPlayerThrow": troubleMakerThrow,
-        "invitedPlayer": invitedPlayer,
-        "active": 1
-    }
-    */
-
 
 dbActions.getMatch(newMatchID, secondPlayerThrow);
 
@@ -154,10 +135,8 @@ dbActions.getMatch(newMatchID, secondPlayerThrow);
                 console.log(data.invitedPlayer);
                 console.log(data.active);
             }
-
         }
     }
-
 
     // next();
 };

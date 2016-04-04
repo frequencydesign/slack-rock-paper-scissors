@@ -29,15 +29,13 @@ var dbActions = {
         });
     },
     disableMatch: function(matchId, matchData, callbackFunction) {
-
         client.get(matchId, function(err, reply) {
-
             if (reply) {
                 callbackFunction(reply);
             } else {
                 callbackFunction(null);
             }
-        })
+        });
     }
 };
 
