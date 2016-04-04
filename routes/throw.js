@@ -38,16 +38,17 @@ dbActions.getMatch(newMatchID, secondPlayerThrow);
 
     function secondPlayerThrow(data) {
         console.log(data)
-        if (data == null) {
+        var theMatchData = JSON.parse(data)
+        if (theMatchData == null) {
             res.json({
                 "username": "outgoing-rps-finish",
                 "text": "Nobodies playing!\nStart a match by calenging someone to a Battle with :video_game::punch:" +
                 "\nthen mention them with @ and make your throw with :the_horns: :memo: or :scissors:"
             });
-        } else if (data.invitedPlayer != requestBodyUserName) {
+        } else if (theMatchData.invitedPlayer != requestBodyUserName) {
             res.json({
                 "username": "outgoing-rps-finish",
-                "text": "You weren't invited to play.\n<" + data.invitedPlayer + "> needs to make a throw first."
+                "text": "You weren't invited to play.\n<" + theMatchData.invitedPlayer + "> needs to make a throw first."
             });
         } else {
             res.json({
