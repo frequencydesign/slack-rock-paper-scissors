@@ -4,7 +4,6 @@ var match = ''
     , newMatchID = '';
 
 exports.post = function(req, res, next) {
-    console.log(req.body);
     var requestBodyText = req.body["text"];
     var requestBodyUserName = req.body["user_name"];
     var requestBodyUserId = req.body["user_id"];
@@ -127,13 +126,13 @@ dbActions.getMatch(newMatchID, secondPlayerThrow);
 */
             theMatchData.active = 0;
             console.log(theMatchData);
-            console.log(theMatchData.invitedPlayer);
             console.log(theMatchData.active);
             dbActions.disableMatch(newMatchID, JSON.stringify(theMatchData), confirmCloseMatch);
             function confirmCloseMatch(data) {
-                console.log(data);
-                console.log(data.invitedPlayer);
-                console.log(data.active);
+                var closeMatchData = JSON.stringify(data);
+                console.log(closeMatchData);
+                console.log(closeMatchData.invitedPlayer);
+                console.log(closeMatchData.active);
             }
         }
     }
