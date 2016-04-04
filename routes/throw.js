@@ -148,7 +148,11 @@ dbActions.getMatch(newMatchID, secondPlayerThrow);
 */
             theMatchData.active = 0;
             dbActions.disableMatch(newMatchID, theMatchData, confirmCloseMatch);
-            slackRes = "Closing last match. \n";
+            function confirmCloseMatch(data) {
+                console.log(data);
+                console.log(data.invitedPlayer);
+                console.log(data.active);
+            }
 
         }
     }
