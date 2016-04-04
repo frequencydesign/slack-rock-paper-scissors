@@ -44,29 +44,26 @@ exports.post = function(req, res, next) {
     }
 
     newMatchID = "activeMatch_" + requestChannelId;
-
+    match = {
+        "matchName": newMatchID,
+        "firstPlayerThrow": troubleMakerThrow,
+        "invitedPlayer": invitedPlayer,
+        "active": 1
+    };
 
 
     dbActions.getMatch(newMatchID, listActiveMatch);
     function listActiveMatch(data) {
+        var theMatchData = JSON.parse(data);
+        console.log(theMatchData.active);
+
+
 //        console.log("Current match: " + data);
 //        console.log("data.active " + data["active"]);
 //        if (data.active != 1) {
-        if (data == null) {
+        if (theMatchData.active == 0) {
             console.log("No active match. Setting up new match.")
-            match = {
-                "matchName": newMatchID,
-                "firstPlayerThrow": troubleMakerThrow,
-                "invitedPlayer": invitedPlayer,
-                "active": 1
-            };
         } else {
-            match = {
-                "matchName": newMatchID,
-                "firstPlayerThrow": troubleMakerThrow,
-                "invitedPlayer": invitedPlayer,
-                "active": 1
-            };
             //dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
             dbActions.getMatch(newMatchID, closeMatch);
         }
@@ -76,6 +73,7 @@ exports.post = function(req, res, next) {
         var theMatchData = JSON.parse(data);
         console.log(theMatchData.active);
         theMatchData.active = 0;
+        console.log(theMatchData.active);
         dbActions.disableMatch(newMatchID, JSON.stringify(theMatchData), confirmCloseMatch)
     }
 
