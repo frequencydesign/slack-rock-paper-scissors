@@ -32,7 +32,7 @@ var dbActions = {
         console.log(matchData);
         client.get(matchId, function(err, reply) {
             if (reply) {
-                console.log(reply);
+                console.log("reply: " + reply);
                 callbackFunction(reply);
             } else {
                 callbackFunction(null);
