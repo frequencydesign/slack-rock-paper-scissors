@@ -7,7 +7,7 @@ exports.post = function(req, res, next) {
 
     var requestBodyText = req.body["text"];
     var requestBodyUserName = req.body["user_name"];
-    var requestBodyUserId = req.body["user_id"];
+    var requestBodyUserId = "@" + req.body["user_id"];
     var requestChannelId = req.body["channel_id"];
     var mentions = requestBodyText.match(/\B@[a-z0-9_-]+/gi);
     var invitedPlayer = mentions[0];
