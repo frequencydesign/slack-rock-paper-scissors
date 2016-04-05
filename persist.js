@@ -28,14 +28,12 @@ var dbActions = {
             }
         });
     },
-    disableMatch: function(matchId, matchData, callbackFunction) {
+    disableMatch: function(matchKey, matchData, callbackFunction) {
         console.log(matchData);
-        client.get(matchId, function(err, reply) {
+        client.set(matchKey, matchData, function(err, reply) {
+            console.log("reply: " + reply);
             if (reply) {
-                console.log("reply: " + reply);
                 callbackFunction(reply);
-            } else {
-                callbackFunction(null);
             }
         });
     }
