@@ -42,10 +42,10 @@ exports.post = function(req, res, next) {
         var theMatchData = JSON.parse(data);
         console.log(theMatchData.active);
 
-        console.log("Current match: " + data);
-        console.log("data['active'] " + data["active"]);
-        console.log("data.active " + data.active);
-        if (data.active != 1) {
+        console.log("Current match: " + theMatchData);
+        console.log("theMatchData['active'] " + theMatchData["active"]);
+        console.log("theMatchData.active " + theMatchData.active);
+        if (theMatchData.active != 1) {
 //        if (theMatchData.active == 0) {
             console.log("No active match. Setting up new match.")
         } else {
