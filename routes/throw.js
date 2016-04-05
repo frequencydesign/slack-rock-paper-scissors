@@ -54,12 +54,12 @@ dbActions.getMatch(newMatchID, secondPlayerThrow);
                 if (troubleMakerThrow == ":memo:") {
                     res.json({
                         "username": "outgoing-rps-finish",
-                        "text": "<" + requestBodyUserId + "> wrapped up the first player's throw"
+                        "text": "<" + requestBodyUserId + "> wrapped up <" + theMatchData.firstPlayerId + ">'s throw"
                     })
                 } else if (troubleMakerThrow == ":scissors:") {
                     res.json({
                         "username": "outgoing-rps-finish",
-                        "text": "The first player smashed <" + requestBodyUserId + ">'s throw"
+                        "text": "<" + theMatchData.firstPlayerId + "> smashed <" + requestBodyUserId + ">'s throw"
                     })
                 } else {
                     res.json({
@@ -71,12 +71,12 @@ dbActions.getMatch(newMatchID, secondPlayerThrow);
                 if (troubleMakerThrow == ":the_horns:") {
                     res.json({
                         "username": "outgoing-rps-finish",
-                        "text": "The first player wrapped up <" + requestBodyUserId + ">'s throw"
+                        "text": "<" + theMatchData.firstPlayerId + "> wrapped up <" + requestBodyUserId + ">'s throw"
                     })
                 } else if (troubleMakerThrow == ":scissors:") {
                     res.json({
                         "username": "outgoing-rps-finish",
-                        "text": "<" + requestBodyUserId + "> sliced up the first player's throw"
+                        "text": "<" + requestBodyUserId + "> sliced up <" + theMatchData.firstPlayerId + ">'s throw"
                     })
                 } else {
                     res.json({
@@ -88,12 +88,12 @@ dbActions.getMatch(newMatchID, secondPlayerThrow);
                 if (troubleMakerThrow == ":memo:") {
                     res.json({
                         "username": "outgoing-rps-finish",
-                        "text": "The first player sliced up <" + requestBodyUserId + ">'s throw"
+                        "text": "<" + theMatchData.firstPlayerId + "> sliced up <" + requestBodyUserId + ">'s throw"
                     })
                 } else if (troubleMakerThrow == ":the_horns:") {
                     res.json({
                         "username": "outgoing-rps-finish",
-                        "text": "<" + requestBodyUserId + "> smashed the first player's throw"
+                        "text": "<" + requestBodyUserId + "> smashed <" + theMatchData.firstPlayerId + ">'s throw"
                     })
                 } else {
                     res.json({

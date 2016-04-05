@@ -7,6 +7,7 @@ exports.post = function(req, res, next) {
 
     var requestBodyText = req.body["text"];
     var requestBodyUserName = req.body["user_name"];
+    var requestBodyUserId = req.body["user_id"];
     var requestChannelId = req.body["channel_id"];
     var mentions = requestBodyText.match(/\B@[a-z0-9_-]+/gi);
     var invitedPlayer = mentions[0];
@@ -30,6 +31,7 @@ exports.post = function(req, res, next) {
     newMatchID = "activeMatch_" + requestChannelId;
     match = {
         "matchName": newMatchID,
+        "firstPlayerId": requestBodyUserId,
         "firstPlayerThrow": troubleMakerThrow,
         "invitedPlayer": invitedPlayer,
         "active": 1
