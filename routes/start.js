@@ -40,11 +40,10 @@ exports.post = function(req, res, next) {
     dbActions.getMatch(newMatchID, listActiveMatch);
     function listActiveMatch(data) {
         var theMatchData = JSON.parse(data);
-        console.log("theMatchData.active " + theMatchData.active);
+        //console.log("theMatchData.active " + theMatchData.active);
         if (theMatchData.active != 1) {
             console.log("No active match. Setting up new match.")
         } else {
-            //dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
             dbActions.getMatch(newMatchID, closeMatch);
         }
     }
@@ -58,8 +57,8 @@ exports.post = function(req, res, next) {
     }
 
     function confirmCloseMatch(data) {
-        var theMatchData = JSON.parse(data);
-        console.log(theMatchData.active);
+        //var theMatchData = JSON.parse(data);
+        //console.log(theMatchData.active);
         slackRes = "Closing last match. \n";
     }
 
