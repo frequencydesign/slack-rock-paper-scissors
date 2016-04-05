@@ -129,10 +129,9 @@ dbActions.getMatch(newMatchID, secondPlayerThrow);
             console.log(theMatchData.active);
             dbActions.disableMatch(newMatchID, JSON.stringify(theMatchData), confirmCloseMatch);
             function confirmCloseMatch(data) {
-                var closeMatchData = JSON.stringify(data);
-                console.log(closeMatchData);
-                console.log(closeMatchData.invitedPlayer);
-                console.log(closeMatchData.active);
+                console.log(data);
+                console.log(data.invitedPlayer);
+                console.log(data.active);
             }
         }
     }

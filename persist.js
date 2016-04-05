@@ -29,8 +29,10 @@ var dbActions = {
         });
     },
     disableMatch: function(matchId, matchData, callbackFunction) {
+        console.log(matchData);
         client.get(matchId, function(err, reply) {
             if (reply) {
+                console.log(reply);
                 callbackFunction(reply);
             } else {
                 callbackFunction(null);
