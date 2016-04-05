@@ -42,8 +42,8 @@ exports.post = function(req, res, next) {
 
 //        console.log("Current match: " + data);
 //        console.log("data.active " + data["active"]);
-//        if (data.active != 1) {
-        if (theMatchData.active == 0) {
+        if (data.active != 1) {
+//        if (theMatchData.active == 0) {
             console.log("No active match. Setting up new match.")
         } else {
             //dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);

@@ -125,13 +125,9 @@ dbActions.getMatch(newMatchID, secondPlayerThrow);
             }
 */
             theMatchData.active = 0;
-            console.log(theMatchData);
-            console.log(theMatchData.active);
             dbActions.disableMatch(newMatchID, JSON.stringify(theMatchData), confirmCloseMatch);
             function confirmCloseMatch(data) {
-                console.log(data);
-                console.log(data.invitedPlayer);
-                console.log(data.active);
+                console.log("match should be closed - oh and a, here's some data: " + data);
             }
         }
     }
