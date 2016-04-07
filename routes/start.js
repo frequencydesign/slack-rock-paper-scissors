@@ -1,7 +1,8 @@
 var match = ''
     , dbActions = require('./../persist.js')
     , slackRes = ''
-    , newMatchID = '';
+    , newMatchID = ''
+    , listActiveMatch = require("./../actions/listActiveMatch.js");
 
 exports.post = function(req, res, next) {
 
@@ -38,28 +39,6 @@ exports.post = function(req, res, next) {
     };
 
     dbActions.getMatch(newMatchID, listActiveMatch);
-    function listActiveMatch(data) {
-        var theMatchData = JSON.parse(data);
-        console.log("listActiveMatch theMatchData.active " + theMatchData.active);
-        if (theMatchData.active != 1) {
-            console.log("No active match. Setting up new match.")
-        } else {
-            dbActions.getMatch(newMatchID, closeMatch);
-        }
-    }
-
-    function closeMatch(data) {
-        var theMatchData = JSON.parse(data);
-        console.log(theMatchData.active);
-        theMatchData.active = 0;
-        console.log(theMatchData.active);
-        dbActions.disableMatch(newMatchID, JSON.stringify(theMatchData), confirmCloseMatch)
-    }
-
-    function confirmCloseMatch() {
-        slackRes = "Closing last match. \n";
-    }
-
 
     /*
     * Start New Match.
@@ -75,7 +54,7 @@ exports.post = function(req, res, next) {
 
     function confirmNewMatch(data) {
         var theMatchData = JSON.parse(data);
-        console.log(theMatchData);
+        console.log("confirmNewMatch: " + theMatchData);
         if (theMatchData.invitedPlayer.length > 2) {
             if(troubleMakerThrowWrong) {
                 res.json({
