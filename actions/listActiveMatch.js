@@ -1,3 +1,6 @@
+var dbActions = require('./../persist.js');
+
+
 function listActiveMatch(data) {
     var theMatchData = JSON.parse(data);
     console.log("listActiveMatch theMatchData.active " + theMatchData.active);
