@@ -40,7 +40,7 @@ exports.post = function(req, res, next) {
     dbActions.getMatch(newMatchID, listActiveMatch);
     function listActiveMatch(data) {
         var theMatchData = JSON.parse(data);
-        //console.log("theMatchData.active " + theMatchData.active);
+        console.log("listActiveMatch theMatchData.active " + theMatchData.active);
         if (theMatchData.active != 1) {
             console.log("No active match. Setting up new match.")
         } else {
@@ -75,6 +75,7 @@ exports.post = function(req, res, next) {
 
     function confirmNewMatch(data) {
         var theMatchData = JSON.parse(data);
+        console.log(theMatchData);
         if (theMatchData.invitedPlayer.length > 2) {
             if(troubleMakerThrowWrong) {
                 res.json({
