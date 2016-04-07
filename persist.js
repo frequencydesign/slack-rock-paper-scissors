@@ -30,7 +30,9 @@ var dbActions = {
     },
     disableMatch: function(matchKey, matchData, callbackFunction) {
         client.set(matchKey, matchData, function(err, reply) {
+            console.log("disableMatch data " + matchData);
             if (reply) {
+                console.log("reply data " + reply);
                 callbackFunction(reply);
             }
         });
