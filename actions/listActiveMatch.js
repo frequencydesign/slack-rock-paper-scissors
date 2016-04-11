@@ -9,6 +9,7 @@ function listActiveMatch(data) {
         console.log("No active match. Setting up new match.")
     } else {
         dbActions.getMatch(newMatchID, closeMatch);
+        slackRes = "Closing last match. \n";
     }
 }
 
@@ -23,7 +24,6 @@ function closeMatch(data) {
 
 function confirmCloseMatch(reply) {
     console.log(reply);
-    slackRes = "Closing last match. \n";
 }
 
 module.exports = listActiveMatch;
