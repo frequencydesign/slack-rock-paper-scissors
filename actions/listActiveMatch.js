@@ -8,8 +8,8 @@ function listActiveMatch(data) {
     if (theMatchData.active != 1) {
         console.log("No active match. Setting up new match.")
     } else {
+        var slackRes = "Closing last match. \n";
         dbActions.getMatch(newMatchID, closeMatch);
-        slackRes = "Closing last match. \n";
     }
 }
 

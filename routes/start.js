@@ -81,7 +81,7 @@ exports.post = function(req, res, next) {
 */
     dbActions.getMatch(newMatchID, listActiveMatch);
     function setupNewMatch() {
-
+        slackRes = listActiveMatch.slackRes;
         dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
     }
 
