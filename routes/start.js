@@ -100,6 +100,7 @@ exports.post = function(req, res, next) {
         if (theMatchData.invitedPlayer.length > 2) {
             console.log("slackRes: " + theMatchData.slackRes);
             console.log("slackRes: " + slackRes);
+            console.log("theMatchData.invitedPlayer: " + theMatchData.invitedPlayer);
             console.log("confirmNewMatch: " + theMatchData);
             if(troubleMakerThrowWrong) {
                 res.json({
