@@ -9,6 +9,7 @@
   "author": "Matt and Mahdi",
   "license": "ISC",
   "dependencies": {
+    "bluebird": "^3.3.4",
     "body-parser": "^1.13.1",
     "express": "^4.13.4",
     "node-slackbot": "^0.0.6",

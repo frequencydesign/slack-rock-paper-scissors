@@ -1,3 +1,5 @@
+var Promise = require("bluebird");
+
 var match = ''
     , dbActions = require('./../persist.js')
     , slackRes = ''
@@ -38,15 +40,17 @@ exports.post = function(req, res, next) {
         "active": 1
     };
 
-    dbActions.getMatch(newMatchID, listActiveMatch);
+    //this gets run first, and checks if there's an active match, and if there is, closes the match
+//var checkForOpenGameAndCloseItFirst = new Promise()
+    var checkCurrentMatchAndThenHandleNewMatch = new Promise(function (resolve, reject) {
+        return dbActions.getMatch(newMatchID, listActiveMatch)
+            .then(function() {
+            dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch)
+        });
 
-    /*
-    * Start New Match.
-    * Print Starting Throw
-    *
-    */
+    });
 
-    dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
+    checkCurrentMatchAndThenHandleNewMatch();
 
     function printNewMatch() {
         dbActions.getMatch(newMatchID, confirmNewMatch);
@@ -74,6 +78,8 @@ exports.post = function(req, res, next) {
             });
         }
     }
+
+
 
     //next();
 };
