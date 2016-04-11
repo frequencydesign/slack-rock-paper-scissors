@@ -55,7 +55,9 @@ exports.post = function(req, res, next) {
     checkCurrentMatchAndThenHandleNewMatch();
     */
 
-    var groupPromise = Q.all([ dbActions.getMatch(newMatchID, listActiveMatch), dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch) ])
+    function groupPromise() {
+        Q.all([ dbActions.getMatch(newMatchID, listActiveMatch), dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch) ])
+    }
     groupPromise();
     function printNewMatch() {
         dbActions.getMatch(newMatchID, confirmNewMatch);
