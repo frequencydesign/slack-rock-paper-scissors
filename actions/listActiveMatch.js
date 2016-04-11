@@ -21,7 +21,8 @@ function closeMatch(data) {
     dbActions.disableMatch(newMatchID, JSON.stringify(theMatchData), confirmCloseMatch)
 }
 
-function confirmCloseMatch() {
+function confirmCloseMatch(reply) {
+    console.log(reply);
     slackRes = "Closing last match. \n";
 }
 

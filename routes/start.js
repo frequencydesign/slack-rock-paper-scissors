@@ -70,6 +70,15 @@ exports.post = function(req, res, next) {
         .done();
     */
 
+
+/*
+    function disableCurrentMatch() {
+
+        dbActions.getMatch(newMatchID, listActiveMatch);
+
+    }
+    disableCurrentMatch();
+*/
     dbActions.getMatch(newMatchID, listActiveMatch);
     function setupNewMatch() {
 
