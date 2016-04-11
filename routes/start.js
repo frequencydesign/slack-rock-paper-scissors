@@ -71,8 +71,9 @@ exports.post = function(req, res, next) {
     */
 
     dbActions.getMatch(newMatchID, listActiveMatch);
-
-    setTimeout(dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch), 5000);
+    var setupNewMatch = dbActions.setMatch(newMatchID, JSON.stringify(match));
+    setTimeout(setupNewMatch, 5000);
+    //setTimeout(dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch), 5000);
     //dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
 
     function printNewMatch() {
