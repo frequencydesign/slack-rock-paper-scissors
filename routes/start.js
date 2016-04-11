@@ -1,4 +1,5 @@
-var Promise = require("bluebird");
+//var Promise = require("bluebird");
+var Q = require("q");
 
 var match = ''
     , dbActions = require('./../persist.js')
@@ -42,6 +43,7 @@ exports.post = function(req, res, next) {
 
     //this gets run first, and checks if there's an active match, and if there is, closes the match
 //var checkForOpenGameAndCloseItFirst = new Promise()
+    /*
     var checkCurrentMatchAndThenHandleNewMatch = new Promise(function (resolve, reject) {
         return dbActions.getMatch(newMatchID, listActiveMatch)
             .then(function() {
@@ -51,7 +53,10 @@ exports.post = function(req, res, next) {
     });
 
     checkCurrentMatchAndThenHandleNewMatch();
+    */
 
+    var groupPromise = Q.all([ dbActions.getMatch(newMatchID, listActiveMatch), dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch) ])
+    groupPromise();
     function printNewMatch() {
         dbActions.getMatch(newMatchID, confirmNewMatch);
     }
