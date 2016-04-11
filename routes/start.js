@@ -96,9 +96,11 @@ exports.post = function(req, res, next) {
     function confirmNewMatch(data) {
         var theMatchData = JSON.parse(data);
         slackRes = theMatchData.slackRes;
-        console.log("slackRes: " + theMatchData.slackRes);
-        console.log("confirmNewMatch: " + theMatchData);
+
         if (theMatchData.invitedPlayer.length > 2) {
+            console.log("slackRes: " + theMatchData.slackRes);
+            console.log("slackRes: " + slackRes);
+            console.log("confirmNewMatch: " + theMatchData);
             if(troubleMakerThrowWrong) {
                 res.json({
                     "username": "outgoing-rps",
