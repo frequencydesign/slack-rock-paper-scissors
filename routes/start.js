@@ -38,6 +38,7 @@ exports.post = function(req, res, next) {
         "firstPlayerId": requestBodyUserId,
         "firstPlayerThrow": troubleMakerThrow,
         "invitedPlayer": invitedPlayer,
+        "slackRes": slackRes,
         "active": 1
     };
 
@@ -81,7 +82,6 @@ exports.post = function(req, res, next) {
 */
     dbActions.getMatch(newMatchID, listActiveMatch);
     function setupNewMatch() {
-        slackRes = listActiveMatch.slackRes;
         dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
     }
 
@@ -95,6 +95,7 @@ exports.post = function(req, res, next) {
 
     function confirmNewMatch(data) {
         var theMatchData = JSON.parse(data);
+        slackRes = theMatchData.slackRes;
         console.log("confirmNewMatch: " + theMatchData);
         if (theMatchData.invitedPlayer.length > 2) {
             if(troubleMakerThrowWrong) {
