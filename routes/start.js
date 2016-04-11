@@ -1,5 +1,5 @@
 //var Promise = require("bluebird");
-var Q = require("q");
+//var Q = require("q");
 
 var match = ''
     , dbActions = require('./../persist.js')
@@ -62,11 +62,17 @@ exports.post = function(req, res, next) {
         )
     }
     groupPromise();*/
+    /*
     Q.fcall(dbActions.getMatch(newMatchID, listActiveMatch))
         .then(function () {
             dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch)
         })
         .done();
+    */
+
+    dbActions.getMatch(newMatchID, listActiveMatch);
+
+    dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
 
     function printNewMatch() {
         dbActions.getMatch(newMatchID, confirmNewMatch);
