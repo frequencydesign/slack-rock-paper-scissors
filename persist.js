@@ -34,7 +34,6 @@ var dbActions = {
         console.log(disablingMatch.active);
         console.log(disablingMatch);
         client.set(matchKey, JSON.stringify(disablingMatch), function(err, reply) {
-            console.log(disablingMatch);
             if (reply) {
                 callbackFunction(reply);
             }
