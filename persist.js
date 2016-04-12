@@ -29,8 +29,11 @@ var dbActions = {
         });
     },
     disableMatch: function(matchKey, matchData, callbackFunction) {
+        matchData.active = 0;
         client.set(matchKey, matchData, function(err, reply) {
+            console.log("disableMatch data " + matchData);
             if (reply) {
+                console.log("disableMatch reply data " + reply);
                 callbackFunction(reply);
             }
         });
