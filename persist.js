@@ -30,6 +30,8 @@ var dbActions = {
     },
     disableMatch: function(matchKey, matchData, callbackFunction) {
         matchData.active = 0;
+        console.log(matchData.active);
+        console.log(matchData.firstPlayerThrow);
         console.log(matchData);
         client.set(matchKey, matchData, function(err, reply) {
             console.log(matchData);
