@@ -93,7 +93,7 @@ exports.post = function(req, res, next) {
 
     function isMatchActive(data){
         var theMatchData = JSON.parse(data);
-        if (theMatchData.active == 1) {
+        if (theMatchData.active == 0) {
             ////theMatchData.active = 0;
             dbActions.disableMatch(newMatchID, JSON.stringify(theMatchData), confirmCloseMatch);
             function confirmCloseMatch() {
