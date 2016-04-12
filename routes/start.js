@@ -101,7 +101,7 @@ exports.post = function(req, res, next) {
                 //dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
             }
         } else {
-            dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
+            //dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
         }
     }
 
