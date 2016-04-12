@@ -33,7 +33,7 @@ var dbActions = {
         disablingMatch.active = 0;
         console.log(disablingMatch.active);
         console.log(disablingMatch);
-        client.set(matchKey, JSON.stringify(disablingMatch), function(err, reply) {
+        client.set(matchKey, matchData, function(err, reply) {
             if (reply) {
                 callbackFunction(reply);
             }
