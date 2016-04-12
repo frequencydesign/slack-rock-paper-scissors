@@ -99,12 +99,11 @@ exports.post = function(req, res, next) {
             function confirmCloseMatch() {
                 slackRes = "Closing last match. \n";
             }
+
         }
-
-        dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
-
     }
 
+    dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
 
     function printNewMatch() {
         dbActions.getMatch(newMatchID, confirmNewMatch);
@@ -114,6 +113,12 @@ exports.post = function(req, res, next) {
         var theMatchData = JSON.parse(data);
 
         if (theMatchData.invitedPlayer.length > 2) {
+            if (theMatchData.active == 1) {
+                theMatchData.active = 0;
+                slackRes = "Closing last match. \n";
+            } else {
+                theMatchData.active = 1;
+            }
              if(troubleMakerThrowWrong) {
                 res.json({
                     "username": "outgoing-rps",
