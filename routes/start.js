@@ -100,7 +100,7 @@ exports.post = function(req, res, next) {
                 slackRes = "Closing last match. \n";
             }
         }
-        
+
         dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
     }
 
