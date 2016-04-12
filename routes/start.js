@@ -80,14 +80,26 @@ exports.post = function(req, res, next) {
     }
     disableCurrentMatch();
 */
+    /*
     dbActions.getMatch(newMatchID, listActiveMatch);
     function setupNewMatch() {
         dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
     }
 
-    setTimeout(setupNewMatch, 1000);
+    setTimeout(setupNewMatch, 1000);*/
     //setTimeout(dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch), 5000);
     //dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
+
+    dbActions.getMatch(newMatchID, isMatchActive);
+
+    function isMatchActive(data){
+        var theMatchData = JSON.parse(data);
+        if (theMatchData.active == 1) {
+            slackRes = "Closing last match. \n";
+        }
+    }
+
+    dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
 
     function printNewMatch() {
         dbActions.getMatch(newMatchID, confirmNewMatch);
@@ -95,9 +107,11 @@ exports.post = function(req, res, next) {
 
     function confirmNewMatch(data) {
         var theMatchData = JSON.parse(data);
-        slackRes = theMatchData.slackRes;
 
         if (theMatchData.invitedPlayer.length > 2) {
+            if (theMatchData.active == 0) {
+                theMatchData.active = 1;
+            }
             console.log("slackRes: " + theMatchData.slackRes);
             console.log("slackRes: " + slackRes);
             console.log("theMatchData.invitedPlayer: " + theMatchData.invitedPlayer);
