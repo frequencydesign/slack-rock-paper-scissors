@@ -29,10 +29,6 @@ var dbActions = {
         });
     },
     disableMatch: function(matchKey, matchData, callbackFunction) {
-        var disablingMatch = JSON.parse(matchData);
-        disablingMatch.active = 0;
-        console.log(disablingMatch.active);
-        console.log(disablingMatch);
         client.set(matchKey, matchData, function(err, reply) {
             if (reply) {
                 callbackFunction(reply);
