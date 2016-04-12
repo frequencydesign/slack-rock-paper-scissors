@@ -32,9 +32,8 @@ var dbActions = {
         var disablingMatch = JSON.parse(matchData);
         disablingMatch.active = 0;
         console.log(disablingMatch.active);
-        console.log(disablingMatch.firstPlayerThrow);
         console.log(disablingMatch);
-        client.set(matchKey, disablingMatch, function(err, reply) {
+        client.set(matchKey, JSON.stringify(disablingMatch), function(err, reply) {
             console.log(disablingMatch);
             if (reply) {
                 callbackFunction(reply);
