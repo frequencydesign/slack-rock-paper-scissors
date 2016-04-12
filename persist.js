@@ -29,12 +29,13 @@ var dbActions = {
         });
     },
     disableMatch: function(matchKey, matchData, callbackFunction) {
-        matchData.active = 0;
-        console.log(matchData.active);
-        console.log(matchData.firstPlayerThrow);
-        console.log(matchData);
-        client.set(matchKey, matchData, function(err, reply) {
-            console.log(matchData);
+        var disablingMatch = JSON.parse(matchData);
+        disablingMatch.active = 0;
+        console.log(disablingMatch.active);
+        console.log(disablingMatch.firstPlayerThrow);
+        console.log(disablingMatch);
+        client.set(matchKey, disablingMatch, function(err, reply) {
+            console.log(disablingMatch);
             if (reply) {
                 callbackFunction(reply);
             }
