@@ -92,17 +92,17 @@ exports.post = function(req, res, next) {
     dbActions.getMatch(newMatchID, isMatchActive);
 
     function isMatchActive(data){
-        //var theMatchData = JSON.parse(data);
-        if (data.active == 1) {
+        var theMatchData = JSON.parse(data);
+        if (theMatchData.active == 1) {
             ////theMatchData.active = 0;
-            dbActions.disableMatch(newMatchID, JSON.stringify(data), confirmCloseMatch);
+            dbActions.disableMatch(newMatchID, JSON.stringify(theMatchData), confirmCloseMatch);
             function confirmCloseMatch() {
                 slackRes = "Closing last match. \n";
-                //dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
             }
-        } else {
-            //dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
         }
+
+        dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
+
     }
 
 
