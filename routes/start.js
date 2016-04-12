@@ -38,7 +38,6 @@ exports.post = function(req, res, next) {
         "firstPlayerId": requestBodyUserId,
         "firstPlayerThrow": troubleMakerThrow,
         "invitedPlayer": invitedPlayer,
-        "slackRes": slackRes,
         "active": 1
     };
 
@@ -95,7 +94,12 @@ exports.post = function(req, res, next) {
     function isMatchActive(data){
         var theMatchData = JSON.parse(data);
         if (theMatchData.active == 1) {
-            slackRes = "Closing last match. \n";
+            ////theMatchData.active = 0;
+            dbActions.disableMatch(newMatchID, JSON.stringify(theMatchData), confirmCloseMatch);
+            function confirmCloseMatch() {
+                slackRes = "Closing last match. \n";
+            }
+
         }
     }
 
@@ -109,14 +113,13 @@ exports.post = function(req, res, next) {
         var theMatchData = JSON.parse(data);
 
         if (theMatchData.invitedPlayer.length > 2) {
-            if (theMatchData.active == 0) {
+            if (theMatchData.active == 1) {
+                theMatchData.active = 0;
+                slackRes = "Closing last match. \n";
+            } else {
                 theMatchData.active = 1;
             }
-            console.log("slackRes: " + theMatchData.slackRes);
-            console.log("slackRes: " + slackRes);
-            console.log("theMatchData.invitedPlayer: " + theMatchData.invitedPlayer);
-            console.log("confirmNewMatch: " + theMatchData);
-            if(troubleMakerThrowWrong) {
+             if(troubleMakerThrowWrong) {
                 res.json({
                     "username": "outgoing-rps",
                     "text": slackRes + troubleMakerThrowWrong

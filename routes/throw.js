@@ -124,7 +124,7 @@ dbActions.getMatch(newMatchID, secondPlayerThrow);
                 slackRes = "Closing last match. \n";
             }
 */
-            theMatchData.active = 0;
+            //theMatchData.active = 0;
             dbActions.disableMatch(newMatchID, JSON.stringify(theMatchData), confirmCloseMatch);
             function confirmCloseMatch(data) {
                 console.log("match should be closed - oh and a, here's some data: " + data);
