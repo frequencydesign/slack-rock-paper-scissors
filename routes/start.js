@@ -95,7 +95,7 @@ exports.post = function(req, res, next) {
         var isMatchActiveData = JSON.parse(data);
         if (isMatchActiveData.active == 1) {
             ////theMatchData.active = 0;
-            dbActions.disableMatch(newMatchID, JSON.stringify(isMatchActiveData));
+            dbActions.disableMatch(newMatchID, JSON.stringify(isMatchActiveData), confirmCloseMatch);
             function confirmCloseMatch() {
                 slackRes = "Closing last match. \n";
 
