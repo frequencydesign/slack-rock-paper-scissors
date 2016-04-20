@@ -89,7 +89,7 @@ exports.post = function(req, res, next) {
     //setTimeout(dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch), 5000);
     //dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
 
-    dbActions.getMatch(newMatchID, isMatchActive);
+    dbActions.getMatch(newMatchID, isMatchActive, startMatch);
 
     function isMatchActive(data){
         var isMatchActiveData = JSON.parse(data);
@@ -103,7 +103,12 @@ exports.post = function(req, res, next) {
         }
     }
 
-    dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
+    function startMatch() {
+
+        dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
+
+    }
+
 
     function printNewMatch() {
         dbActions.getMatch(newMatchID, confirmNewMatch);
