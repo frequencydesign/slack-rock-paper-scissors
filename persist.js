@@ -16,6 +16,7 @@ var dbActions = {
         var setMatchDataJSON = JSON.parse(setMatchData);
         setMatchDataJSON.active = 1;
         client.set(matchKey, JSON.stringify(setMatchDataJSON), function(err, reply) {
+            console.log("setMatchDataJSON data " +  JSON.stringify(setMatchDataJSON));
             if (reply) {
                 callbackFunction(reply);
             }
@@ -34,7 +35,7 @@ var dbActions = {
         var disableMatchDataJSON = JSON.parse(disableMatchData);
         disableMatchDataJSON.active = 0;
         client.set(matchKey, JSON.stringify(disableMatchDataJSON), function(err, reply) {
-            console.log("disableMatchDataJSON data " + disableMatchDataJSON);
+            console.log("disableMatchDataJSON data " +  JSON.stringify(disableMatchDataJSON));
             if (reply) {
                 console.log("disableMatchDataJSON reply data " + reply);
                 callbackFunction(reply);
