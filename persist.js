@@ -13,16 +13,9 @@ if (process.env.REDIS_URL) {
 var dbActions = {
 
     setMatch: function(matchKey, setMatchData, callbackFunction) {
-        console.log("setMatch data " + setMatchData);
-        console.log(typeof setMatchData);
         var setMatchDataJSON = JSON.parse(setMatchData);
-        console.log(typeof setMatchDataJSON);
         setMatchDataJSON.active = 1;
-        setMatchDataJSON["active"] = 1;
-        console.log("setMatchData.active " + setMatchDataJSON.active);
-        console.log("setMatchData['active'] " + setMatchDataJSON["active"]);
         client.set(matchKey, JSON.stringify(setMatchDataJSON), function(err, reply) {
-            console.log("client.set reply " + reply);
             if (reply) {
                 callbackFunction(reply);
             }
@@ -37,12 +30,13 @@ var dbActions = {
             }
         });
     },
-    disableMatch: function(matchKey, matchData, callbackFunction) {
-        matchData.active = 0;
-        client.set(matchKey, matchData, function(err, reply) {
-            console.log("disableMatch data " + matchData);
+    disableMatch: function(matchKey, disableMatchData, callbackFunction) {
+        var disableMatchDataJSON = JSON.parse(disableMatchData);
+        disableMatchDataJSON.active = 0;
+        client.set(matchKey, JSON.stringify(disableMatchDataJSON), function(err, reply) {
+            console.log("disableMatchDataJSON data " + disableMatchDataJSON);
             if (reply) {
-                console.log("disableMatch reply data " + reply);
+                console.log("disableMatchDataJSON reply data " + reply);
                 callbackFunction(reply);
             }
         });
