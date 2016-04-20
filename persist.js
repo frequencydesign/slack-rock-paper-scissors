@@ -18,7 +18,7 @@ var dbActions = {
         setMatchData.active = 1;
         setMatchData["active"] = 1;
         console.log("setMatchData.active " + setMatchData.active);
-        console.log("setMatchData["active"] " + setMatchData["active"]);
+        console.log("setMatchData['active'] " + setMatchData["active"]);
         client.set(matchKey, setMatchData, function(err, reply) {
             console.log("client.set reply " + reply);
             if (reply) {
