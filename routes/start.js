@@ -104,7 +104,7 @@ exports.post = function(req, res, next) {
     }
 
     function startMatch() {
-
+console.log("Are you here?");
         dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
 
     }
