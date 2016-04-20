@@ -1,5 +1,5 @@
 //var Promise = require("bluebird");
-//var Q = require("q");
+var Q = require("q");
 
 var match = ''
     , dbActions = require('./../persist.js')
@@ -89,6 +89,29 @@ exports.post = function(req, res, next) {
     //setTimeout(dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch), 5000);
     //dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
 
+    var promise = new Q(function(resolve, reject) {
+        dbActions.getMatch(newMatchID, isMatchActive);
+        function isMatchActive(data){
+            dbActions.disableMatch(newMatchID, JSON.stringify(isMatchActiveData), confirmCloseMatch);
+        }
+
+        function confirmCloseMatch() {
+            slackRes = "Closing last match. \n";
+            startMatch();
+        }
+
+    });
+
+    promise.then(function(result) {
+       result();
+    }, function(err) {
+        console.log(err);
+    }).then(function() {
+        dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
+    });
+
+/*
+
     dbActions.getMatch(newMatchID, isMatchActive);
 
     function isMatchActive(data){
@@ -112,6 +135,7 @@ console.log("Starting Match Data");
 
     }
 
+*/
 
     function printNewMatch() {
         dbActions.getMatch(newMatchID, confirmNewMatch);
