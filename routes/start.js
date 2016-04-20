@@ -100,10 +100,10 @@ exports.post = function(req, res, next) {
                 slackRes = "Closing last match. \n";
 
                 startMatch();
-            } else {
-                startMatch();
             }
 
+        } else {
+            startMatch();
         }
     }
 
