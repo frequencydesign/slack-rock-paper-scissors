@@ -16,6 +16,7 @@ var dbActions = {
         console.log("setMatch data " + setMatchData);
         console.log(typeof setMatchData);
         var setMatchDataJSON = JSON.parse(setMatchData);
+        console.log(typeof setMatchDataJSON);
         setMatchDataJSON.active = 1;
         setMatchDataJSON["active"] = 1;
         console.log("setMatchData.active " + setMatchDataJSON.active);
