@@ -92,8 +92,8 @@ exports.post = function(req, res, next) {
     var promise = new Q(function(resolve, reject) {
         dbActions.getMatch(newMatchID, isMatchActive);
         function isMatchActive(data){
-            //var isMatchActiveData = JSON.parse(data);
-            dbActions.disableMatch(newMatchID, data, confirmCloseMatch);
+            var isMatchActiveData = JSON.parse(data);
+            dbActions.disableMatch(newMatchID, JSON.stringify(isMatchActiveData), confirmCloseMatch);
         }
 
         function confirmCloseMatch() {
