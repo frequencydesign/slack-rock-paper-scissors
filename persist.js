@@ -12,8 +12,12 @@ if (process.env.REDIS_URL) {
 
 var dbActions = {
 
-    setMatch: function(matchKey, matchData, callbackFunction) {
-        client.set(matchKey, matchData, function(err, reply) {
+    setMatch: function(matchKey, setMatchData, callbackFunction) {
+        console.log("setMatch data " + setMatchData);
+        setMatchData.active = 1;
+        console.log("setMatchData.active " + setMatchData.active);
+        client.set(matchKey, setMatchData, function(err, reply) {
+            console.log("client.set reply " + reply);
             if (reply) {
                 callbackFunction(reply);
             }
