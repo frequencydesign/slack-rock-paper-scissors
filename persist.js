@@ -15,12 +15,12 @@ var dbActions = {
     setMatch: function(matchKey, setMatchData, callbackFunction) {
         console.log("setMatch data " + setMatchData);
         console.log(typeof setMatchData);
-        JSON.parse(setMatchData);
-        setMatchData.active = 1;
-        setMatchData["active"] = 1;
-        console.log("setMatchData.active " + setMatchData.active);
-        console.log("setMatchData['active'] " + setMatchData["active"]);
-        client.set(matchKey, JSON.stringify(setMatchData), function(err, reply) {
+        var setMatchDataJSON = JSON.parse(setMatchData);
+        setMatchDataJSON.active = 1;
+        setMatchDataJSON["active"] = 1;
+        console.log("setMatchData.active " + setMatchDataJSON.active);
+        console.log("setMatchData['active'] " + setMatchDataJSON["active"]);
+        client.set(matchKey, JSON.stringify(setMatchDataJSON), function(err, reply) {
             console.log("client.set reply " + reply);
             if (reply) {
                 callbackFunction(reply);
