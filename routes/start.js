@@ -38,7 +38,7 @@ exports.post = function(req, res, next) {
         "firstPlayerId": requestBodyUserId,
         "firstPlayerThrow": troubleMakerThrow,
         "invitedPlayer": invitedPlayer,
-        "active": 0
+        "active": null
     };
 
     //this gets run first, and checks if there's an active match, and if there is, closes the match
@@ -113,12 +113,6 @@ exports.post = function(req, res, next) {
         var theMatchData = JSON.parse(data);
 
         if (theMatchData.invitedPlayer.length > 2) {
-/*            if (theMatchData.active == 1) {
-                theMatchData.active = 0;
-                slackRes = "Closing last match. \n";
-            } else {
-                theMatchData.active = 1;
-            }*/
              if(troubleMakerThrowWrong) {
                 res.json({
                     "username": "outgoing-rps",
