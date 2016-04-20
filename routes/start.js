@@ -92,12 +92,11 @@ exports.post = function(req, res, next) {
     var promise = new Q(function(resolve, reject) {
         dbActions.getMatch(newMatchID, isMatchActive);
         function isMatchActive(data){
-            dbActions.disableMatch(newMatchID, JSON.stringify(isMatchActiveData), confirmCloseMatch);
+            dbActions.disableMatch(newMatchID, JSON.stringify(data), confirmCloseMatch);
         }
 
         function confirmCloseMatch() {
             slackRes = "Closing last match. \n";
-            startMatch();
         }
 
     });
