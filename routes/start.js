@@ -141,8 +141,9 @@ console.log("Starting Match Data");
     }
 
     function confirmNewMatch(data) {
+        console.log(typeof data);
         var theMatchData = JSON.parse(data);
-
+console.log(typeof theMatchData);
         if (theMatchData.invitedPlayer.length > 2) {
              if(troubleMakerThrowWrong) {
                 res.json({
