@@ -105,7 +105,8 @@ exports.post = function(req, res, next) {
 
     });
 
-    promise.then(function() {
+    promise.then(function(result) {
+       result();
         console.log("should finish before setMatch sets a new match");
     }, function(err) {
         console.log(err);
