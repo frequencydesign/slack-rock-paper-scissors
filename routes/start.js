@@ -90,12 +90,6 @@ exports.post = function(req, res, next) {
     //dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
 
     var promise = new Q(function(resolve, reject) {
-
-
-    });
-
-    promise.then(function(result) {
-       result();
         dbActions.getMatch(newMatchID, isMatchActive);
         function isMatchActive(data){
             var isMatchActiveData = JSON.parse(data);
@@ -108,6 +102,10 @@ exports.post = function(req, res, next) {
         function confirmCloseMatch() {
             slackRes = "Closing last match. \n";
         }
+
+    });
+
+    promise.then(function() {
         console.log("should finish before setMatch sets a new match");
     }, function(err) {
         console.log(err);
