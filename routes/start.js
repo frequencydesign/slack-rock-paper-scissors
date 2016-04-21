@@ -107,7 +107,7 @@ exports.post = function(req, res, next) {
 
     promise.then(function(result) {
        result();
-        console.log;
+        console.log("should finish before setMatch sets a new match");
     }, function(err) {
         console.log(err);
     }).then(function() {
@@ -146,9 +146,7 @@ console.log("Starting Match Data");
     }
 
     function confirmNewMatch(data) {
-        console.log(typeof data);
         var theMatchData = JSON.parse(data);
-console.log(typeof theMatchData);
         if (theMatchData.invitedPlayer.length > 2) {
              if(troubleMakerThrowWrong) {
                 res.json({

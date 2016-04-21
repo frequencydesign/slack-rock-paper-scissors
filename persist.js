@@ -37,7 +37,6 @@ var dbActions = {
         client.set(matchKey, JSON.stringify(disableMatchDataJSON), function(err, reply) {
             console.log("disableMatchDataJSON data " +  JSON.stringify(disableMatchDataJSON));
             if (reply) {
-                console.log("disableMatchDataJSON reply data " + reply);
                 callbackFunction(reply);
             }
         });
