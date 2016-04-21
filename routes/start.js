@@ -107,6 +107,7 @@ exports.post = function(req, res, next) {
 
     promise.then(function(result) {
        result();
+        console.log;
     }, function(err) {
         console.log(err);
     }).then(function() {
