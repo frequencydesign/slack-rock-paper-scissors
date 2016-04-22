@@ -32,9 +32,11 @@ var dbActions = {
         });
     },
     disableMatch: function(matchKey, disableMatchData, callbackFunction) {
+        console.log("step 3");
         var disableMatchDataJSON = JSON.parse(disableMatchData);
         disableMatchDataJSON.active = 0;
         client.set(matchKey, JSON.stringify(disableMatchDataJSON), function(err, reply) {
+            console.log("step 4");
             console.log("disableMatchDataJSON data " +  JSON.stringify(disableMatchDataJSON));
             if (reply) {
                 callbackFunction(reply);

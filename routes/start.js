@@ -143,19 +143,25 @@ exports.post = function(req, res, next) {
     function isMatchActive(data){
         var isMatchActiveData = JSON.parse(data);
         console.log("isMatchActiveData.active " + isMatchActiveData.active);
+        console.log("step 1");
         if (isMatchActiveData.active == 1) {
+            console.log("step 2");
             dbActions.disableMatch(newMatchID, JSON.stringify(isMatchActiveData), confirmCloseMatch);
         } else {
             setupNewMatch();
         }
     }
     function confirmCloseMatch() {
+        console.log("step 5");
         slackRes = "Closing last match. \n";
+        console.log("step 6");
         setupNewMatch();
     }
 
     var setupNewMatch = function() {
+        console.log("step 8");
         dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
+        console.log("step 9");
     };
 
     /*
