@@ -111,6 +111,17 @@ exports.post = function(req, res, next) {
 
         console.log("Starting one's ajax");
         dbActions.getMatch(newMatchID, isMatchActive);
+        function isMatchActive(data){
+            var isMatchActiveData = JSON.parse(data);
+            console.log("isMatchActiveData.active " + isMatchActiveData.active);
+            if (isMatchActiveData.active == 1) {
+                dbActions.disableMatch(newMatchID, JSON.stringify(isMatchActiveData), confirmCloseMatch);
+            }
+        }
+
+        function confirmCloseMatch() {
+            slackRes = "Closing last match. \n";
+        }
         return deferred.promise;
     }
 
@@ -124,18 +135,6 @@ exports.post = function(req, res, next) {
 
     one()
         .then(two);
-
-    function isMatchActive(data){
-        var isMatchActiveData = JSON.parse(data);
-        console.log("isMatchActiveData.active " + isMatchActiveData.active);
-        if (isMatchActiveData.active == 1) {
-            dbActions.disableMatch(newMatchID, JSON.stringify(isMatchActiveData), confirmCloseMatch);
-        }
-    }
-
-    function confirmCloseMatch() {
-        slackRes = "Closing last match. \n";
-    }
 
 /*
 
