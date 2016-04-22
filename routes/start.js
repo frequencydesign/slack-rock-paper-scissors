@@ -90,12 +90,13 @@ exports.post = function(req, res, next) {
     //dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
 
     var promise = new Q(function(resolve, reject) {
-        resolve(
-            dbActions.getMatch(newMatchID, isMatchActive)
-
-        )
+        resolve(checkForActiveMatchFirst)
     });
-    
+
+    function checkForActiveMatchFirst() {
+        dbActions.getMatch(newMatchID, isMatchActive)
+    }
+
     function isMatchActive(data){
         var isMatchActiveData = JSON.parse(data);
         console.log("isMatchActiveData.active " + isMatchActiveData.active);
