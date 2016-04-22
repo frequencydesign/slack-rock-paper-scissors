@@ -90,18 +90,6 @@ exports.post = function(req, res, next) {
     //dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
 
     var promise = new Q(function(resolve, reject) {
-        dbActions.getMatch(newMatchID, isMatchActive);
-        function isMatchActive(data){
-            var isMatchActiveData = JSON.parse(data);
-            console.log("isMatchActiveData.active " + isMatchActiveData.active);
-            if (isMatchActiveData.active == 1) {
-                dbActions.disableMatch(newMatchID, JSON.stringify(isMatchActiveData), confirmCloseMatch);
-            }
-        }
-
-        function confirmCloseMatch() {
-            slackRes = "Closing last match. \n";
-        }
 
     });
 
@@ -111,8 +99,23 @@ exports.post = function(req, res, next) {
     }, function(err) {
         console.log(err);
     }).then(function() {
+        dbActions.getMatch(newMatchID, isMatchActive);
+    }).then(function() {
         dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
     });
+
+
+    function isMatchActive(data){
+        var isMatchActiveData = JSON.parse(data);
+        console.log("isMatchActiveData.active " + isMatchActiveData.active);
+        if (isMatchActiveData.active == 1) {
+            dbActions.disableMatch(newMatchID, JSON.stringify(isMatchActiveData), confirmCloseMatch);
+        }
+    }
+
+    function confirmCloseMatch() {
+        slackRes = "Closing last match. \n";
+    }
 
 /*
 
