@@ -90,24 +90,20 @@ exports.post = function(req, res, next) {
     //dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
 
     var promise = new Q(function(resolve, reject) {
-        resolve(checkForActiveMatchFirst)
-    });
-
-    checkForActiveMatchFirst = function() {
-        //dbActions.getMatch(newMatchID, isMatchActive)
-    }
-
-    function isMatchActive(data){
-        var isMatchActiveData = JSON.parse(data);
-        console.log("isMatchActiveData.active " + isMatchActiveData.active);
-        if (isMatchActiveData.active == 1) {
-            dbActions.disableMatch(newMatchID, JSON.stringify(isMatchActiveData), confirmCloseMatch);
+        dbActions.getMatch(newMatchID, isMatchActive);
+        function isMatchActive(data){
+            var isMatchActiveData = JSON.parse(data);
+            console.log("isMatchActiveData.active " + isMatchActiveData.active);
+            if (isMatchActiveData.active == 1) {
+                dbActions.disableMatch(newMatchID, JSON.stringify(isMatchActiveData), confirmCloseMatch);
+            }
         }
-    }
 
-    function confirmCloseMatch() {
-        slackRes = "Closing last match. \n";
-    }
+        function confirmCloseMatch() {
+            slackRes = "Closing last match. \n";
+        }
+
+    });
 
     promise.then(function(result) {
        result();
