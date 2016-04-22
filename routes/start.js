@@ -104,6 +104,7 @@ exports.post = function(req, res, next) {
         dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
     });*/
 
+/*
     function one() {
 
         var deferred = Q.defer(); // Don't worry yet what this is
@@ -135,33 +136,53 @@ exports.post = function(req, res, next) {
 
     one()
         .then(two);
+*/
 
-/*
 
     dbActions.getMatch(newMatchID, isMatchActive);
-
     function isMatchActive(data){
         var isMatchActiveData = JSON.parse(data);
         console.log("isMatchActiveData.active " + isMatchActiveData.active);
         if (isMatchActiveData.active == 1) {
-            ////theMatchData.active = 0;
-            dbActions.disableMatch(newMatchID, JSON.stringify(isMatchActiveData), confirmCloseMatch);
-            function confirmCloseMatch() {
-                slackRes = "Closing last match. \n";
-                startMatch();
-            }
+            dbActions.disableMatch(newMatchID, JSON.stringify(isMatchActiveData), confirmCloseMatch, setupNewMatch);
         } else {
-            startMatch();
+            setupNewMatch();
         }
     }
-
-    function startMatch() {
-console.log("Starting Match Data");
-        dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
-
+    function confirmCloseMatch() {
+        slackRes = "Closing last match. \n";
     }
 
-*/
+    var setupNewMatch = function() {
+        dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
+    };
+
+    /*
+
+        dbActions.getMatch(newMatchID, isMatchActive);
+
+        function isMatchActive(data){
+            var isMatchActiveData = JSON.parse(data);
+            console.log("isMatchActiveData.active " + isMatchActiveData.active);
+            if (isMatchActiveData.active == 1) {
+                ////theMatchData.active = 0;
+                dbActions.disableMatch(newMatchID, JSON.stringify(isMatchActiveData), confirmCloseMatch);
+                function confirmCloseMatch() {
+                    slackRes = "Closing last match. \n";
+                    startMatch();
+                }
+            } else {
+                startMatch();
+            }
+        }
+
+        function startMatch() {
+    console.log("Starting Match Data");
+            dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
+
+        }
+
+    */
 
     function printNewMatch() {
         dbActions.getMatch(newMatchID, confirmNewMatch);
