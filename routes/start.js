@@ -159,9 +159,9 @@ exports.post = function(req, res, next) {
     }
 
     var setupNewMatch = function() {
-        console.log("step 8");
+        console.log("step 7");
         dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
-        console.log("step 9");
+        console.log("step 8");
     };
 
     /*
