@@ -94,7 +94,7 @@ exports.post = function(req, res, next) {
     });
 
     checkForActiveMatchFirst = function() {
-        dbActions.getMatch(newMatchID, isMatchActive)
+        //dbActions.getMatch(newMatchID, isMatchActive)
     }
 
     function isMatchActive(data){
