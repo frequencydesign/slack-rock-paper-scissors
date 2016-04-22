@@ -89,7 +89,7 @@ exports.post = function(req, res, next) {
     //setTimeout(dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch), 5000);
     //dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
 
-    var promise = new Q(function(resolve, reject) {
+/*    var promise = new Q(function(resolve, reject) {
 
     });
 
@@ -102,8 +102,28 @@ exports.post = function(req, res, next) {
         dbActions.getMatch(newMatchID, isMatchActive);
     }).then(function() {
         dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
-    });
+    });*/
 
+    function one() {
+
+        var deferred = Q.defer(); // Don't worry yet what this is
+                                  // until after you understand the flow
+
+        console.log("Starting one's ajax");
+        dbActions.getMatch(newMatchID, isMatchActive);
+        return deferred.promise;
+    }
+
+    function two() {
+        var deferred = Q.defer();
+        console.log("Starting two's ajax");
+        dbActions.setMatch(newMatchID, JSON.stringify(match), printNewMatch);
+        return deferred.promise;
+    }
+
+
+    one()
+        .then(two);
 
     function isMatchActive(data){
         var isMatchActiveData = JSON.parse(data);
