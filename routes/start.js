@@ -144,13 +144,14 @@ exports.post = function(req, res, next) {
         var isMatchActiveData = JSON.parse(data);
         console.log("isMatchActiveData.active " + isMatchActiveData.active);
         if (isMatchActiveData.active == 1) {
-            dbActions.disableMatch(newMatchID, JSON.stringify(isMatchActiveData), confirmCloseMatch, setupNewMatch);
+            dbActions.disableMatch(newMatchID, JSON.stringify(isMatchActiveData), confirmCloseMatch);
         } else {
             setupNewMatch();
         }
     }
     function confirmCloseMatch() {
         slackRes = "Closing last match. \n";
+        setupNewMatch();
     }
 
     var setupNewMatch = function() {
