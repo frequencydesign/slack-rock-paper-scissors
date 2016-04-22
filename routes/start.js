@@ -93,7 +93,7 @@ exports.post = function(req, res, next) {
         resolve(checkForActiveMatchFirst)
     });
 
-    function checkForActiveMatchFirst() {
+    checkForActiveMatchFirst = function() {
         dbActions.getMatch(newMatchID, isMatchActive)
     }
 
