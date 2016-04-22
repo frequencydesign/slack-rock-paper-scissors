@@ -148,6 +148,7 @@ exports.post = function(req, res, next) {
             console.log("step 2");
             dbActions.disableMatch(newMatchID, JSON.stringify(isMatchActiveData), confirmCloseMatch);
         } else {
+            slackRes = "";
             setupNewMatch();
         }
     }
